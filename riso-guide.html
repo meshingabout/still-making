@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby's First Riso — Notes from Sesh's Workshop</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream:      #F2EBD9;
+  --cream-dark: #E8DEC8;
+  --ink:        #1C1610;
+  --dust:       #7A6855;
+  --orange:     #D4570A;
+  --orange-lt:  #F2793A;
+  --burgundy:   #7A1F2E;
+  --ochre:      #C09030;
+  --teal:       #1F5A58;
+  --midnight:   #1A1410;
+  --indigo:     #2B3E8C;
+  --mango:      #E8A820;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #2A2118;
+  font-family: 'Lora', Georgia, serif;
+  padding: 0 0 80px;
+}
+.page { max-width: 740px; margin: 0 auto; padding: 0 16px; }
+.zine {
+  border-radius: 6px;
+  margin: 32px 0;
+  box-shadow: 5px 8px 0 #0D0B08, 0 20px 80px rgba(0,0,0,0.6);
+  overflow: hidden;
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  background: var(--midnight);
+  padding: 44px 52px 36px;
+  position: relative; overflow: hidden;
+}
+.masthead-botanical {
+  position: absolute; top: -20px; right: -20px;
+  width: 280px; height: 280px; opacity: 0.1; pointer-events: none;
+}
+.masthead-note {
+  font-family: 'DM Mono', monospace; font-size: 0.46rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(242,235,217,0.3);
+  margin-bottom: 20px; position: relative; z-index: 1;
+}
+.masthead-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(2.6rem, 8vw, 4.8rem);
+  line-height: 0.92; letter-spacing: -0.03em;
+  color: var(--cream); position: relative; z-index: 1;
+}
+.masthead-title .accent {
+  display: block;
+  font-family: 'Lora', serif; font-style: italic; font-weight: 600;
+  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+  color: var(--orange); letter-spacing: -0.01em;
+  line-height: 1.2; margin-top: 4px;
+}
+.masthead-bar {
+  height: 3px; background: var(--orange);
+  margin-top: 28px; opacity: 0.6; position: relative; z-index: 1;
+}
+
+/* ── LAYOUT ── */
+.pair {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+}
+.pair-text {
+  padding: 44px 40px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.pair-text .bignum {
+  position: absolute; font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 11rem; line-height: 1; pointer-events: none; user-select: none;
+  bottom: -20px; right: -10px; opacity: 0.06; letter-spacing: -0.05em;
+}
+.pair-img {
+  background: #111;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.pair-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.pair-img.flip { order: -1; }
+
+.full-text { padding: 44px 52px; }
+.full-img { overflow: hidden; }
+.full-img img { width: 100%; display: block; }
+.full-img.contain-bg { background: #111; }
+.full-img.contain-bg img { object-fit: contain; max-height: 520px; }
+.full-img.cover-img img { object-fit: cover; max-height: 500px; }
+
+.cap {
+  padding: 9px 24px;
+  font-family: 'DM Mono', monospace; font-size: 0.44rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* colour blocks */
+.color-pair { display: grid; grid-template-columns: 1fr 1fr; }
+.color-block {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 220px;
+}
+
+/* text styles */
+.s-step {
+  font-family: 'DM Mono', monospace; font-size: 0.44rem;
+  letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 6px;
+}
+.s-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(1.3rem, 2.8vw, 1.85rem);
+  line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 18px;
+}
+.s-body { font-size: 0.95rem; line-height: 1.85; }
+.s-body p { margin-bottom: 12px; }
+.s-body p:last-child { margin-bottom: 0; }
+.s-body em { font-style: italic; }
+
+/* footer */
+.guide-footer {
+  background: var(--ink); padding: 20px 52px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.guide-footer-text {
+  font-family: 'DM Mono', monospace; font-size: 0.42rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(242,235,217,0.2); line-height: 2;
+}
+.guide-footer-mark {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1.0rem; color: var(--orange); opacity: 0.5;
+}
+
+@media (max-width: 560px) {
+  .pair { grid-template-columns: 1fr; }
+  .pair-img.flip { order: 0; }
+  .color-pair { grid-template-columns: 1fr; }
+  .masthead, .pair-text, .full-text, .guide-footer { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="zine">
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <svg class="masthead-botanical" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M255 10 C215 55, 235 115, 205 160 C175 205, 125 195, 105 250" stroke="#D4570A" stroke-width="2.5" fill="none"/>
+    <circle cx="205" cy="160" r="22" stroke="#D4570A" stroke-width="2"/>
+    <path d="M205 160 C188 143,178 128,174 110 M205 160 C222 143,232 130,236 112 M205 160 C185 160,172 154,164 162 M205 160 C224 162,236 156,244 164" stroke="#D4570A" stroke-width="1.5" fill="none"/>
+    <circle cx="105" cy="250" r="14" stroke="#D4570A" stroke-width="1.5"/>
+    <path d="M105 250 C93 238,85 224,82 210 M105 250 C117 238,125 226,128 212" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+    <circle cx="245" cy="58" r="10" stroke="#D4570A" stroke-width="1.5"/>
+    <path d="M245 58 C234 47,228 38,225 26 M245 58 C256 47,262 40,265 28" stroke="#D4570A" stroke-width="1.2"/>
+  </svg>
+  <div class="masthead-note">Notes from Sesh's Riso Workshop · May 2026</div>
+  <div class="masthead-title">
+    Baby's first
+    <span class="accent">RISO workshop.</span>
+  </div>
+  <div class="masthead-bar"></div>
+</div>
+
+<!-- STEP 1: colour blocks only, no annotation -->
+<div class="pair">
+  <div class="pair-text" style="background:var(--midnight);">
+    <div class="bignum" style="color:#fff;">01</div>
+    <div class="s-step" style="color:var(--orange-lt);">Step 1</div>
+    <div class="s-title" style="color:var(--cream);">First, I decided on my color combination. Blue and yellow.</div>
+  </div>
+  <div class="color-pair">
+    <div class="color-block" style="background:var(--indigo);"></div>
+    <div class="color-block" style="background:var(--mango);"></div>
+  </div>
+</div>
+
+<!-- STEP 2: Designing the blue — indigo text left, image right -->
+<div class="pair">
+  <div class="pair-text" style="background:var(--teal);">
+    <div class="bignum" style="color:#fff;">02</div>
+    <div class="s-step" style="color:rgba(255,255,255,0.45);">Step 2 — Designing the blue</div>
+    <div class="s-title" style="color:#fff;">You use tracing paper on top of a white A4 sheet to manage the two different color layers.</div>
+    <div class="s-body" style="color:rgba(255,255,255,0.8);">
+      <p>For example, I chose everything on this piece of white A4 to be what I printed in blue — it includes a photocopy of the recent sketch I did, some torn bits of graph paper, some illustrations of leaves and flowers cut out from an old gardening magazine, some words from an old label maker.</p>
+      <p>Even though this will be printed in blue — while designing we think in grayscale — the darker the element on the paper like the sketch — the more saturated the blue ink will be in the print. The leaf for example is not as dark and will be printed a lighter blue.</p>
+    </div>
+  </div>
+  <div class="pair-img">
+    <img src="riso-img-00.jpg" alt="Blue layer collage on white A4 — sketch photocopy, graph paper, leaf, label tape reading MAKE BAD ART">
+  </div>
+</div>
+
+<!-- STEP 3: Designing the yellow — image left, ochre text right -->
+<div class="pair">
+  <div class="pair-img flip">
+    <img src="riso-img-01.jpg" alt="Tracing paper yellow layer placed over blue collage, with ink brushstrokes and red star cutouts">
+  </div>
+  <div class="pair-text" style="background:var(--orange);">
+    <div class="bignum" style="color:#fff;">03</div>
+    <div class="s-step" style="color:rgba(255,255,255,0.5);">Step 3 — Designing the yellow</div>
+    <div class="s-title" style="color:#fff;">I placed on a tracing paper on top of the 'blue layer.'</div>
+    <div class="s-body" style="color:rgba(255,255,255,0.88);">
+      <p>Everything drawn, or stuck onto the tracing paper will be printed in yellow. I wanted some lovely yellow colored highlights around my sketch so I used a paintbrush dripped in black to draw lines where I wanted the yellow to show. I also added some little cutouts of stars that I stuck to the piece of paper.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INTERIM: Cutting room floor — cream-dark text then image -->
+<div class="full-text" style="background:var(--cream-dark);">
+  <div class="s-step" style="color:var(--burgundy);">The cutting room floor</div>
+  <div class="s-body" style="color:var(--ink);">
+    <p>The pictures just show my final choice, but there were many other cut outs and bits that I had played about with including, and in the end, chose not to. Because I have the tracing paper on top of the other paper I could very easily move things around, visualize how it might look. if I didn't like how something looked, then I removed it.</p>
+    <p>Once I was happy with how all the elements were coming together then I just glued the different bits down. And then it's time to feed things into the printer.</p>
+  </div>
+</div>
+<div class="full-img contain-bg">
+  <img src="riso-img-02.jpg" alt="Cutting mat covered in collage materials — scraps, cutouts, torn paper, labels, magazine clippings">
+</div>
+
+<!-- STEP 4: Print the yellow — ochre text left, two-layers image right -->
+<div class="pair">
+  <div class="pair-text" style="background:var(--ochre);">
+    <div class="bignum" style="color:rgba(28,22,16,1);">04</div>
+    <div class="s-step" style="color:rgba(28,22,16,0.5);">Step 4 — Print the yellow layer</div>
+    <div class="s-title" style="color:var(--ink);">You scan and print each layer separately.</div>
+    <div class="s-body" style="color:rgba(28,22,16,0.88);">
+      <p>For example, we loaded the yellow cartridge and placed my yellow layer in the scan bed.</p>
+      <p>The machine creates a little stencil based on the scan. And then you're ready to print how many ever copies you need. We printed all the yellow copies first.</p>
+    </div>
+  </div>
+  <div class="pair-img">
+    <img src="riso-img-03.jpg" alt="Tracing paper original on the left, printed Riso in yellow on the right">
+  </div>
+</div>
+<div class="cap" style="background:var(--ochre);color:rgba(28,22,16,0.45);">
+  Tracing paper original (left) · Printed Riso in yellow (right)
+</div>
+
+<!-- STEP 5: Print the blue — final print image left, midnight text right -->
+<div class="pair">
+  <div class="pair-img flip">
+    <img src="riso-img-04.jpg" alt="Final Riso print — blue and yellow combined, figure with graph paper, leaf, MAKE BAD ART">
+  </div>
+  <div class="pair-text" style="background:var(--midnight);">
+    <div class="bignum" style="color:#fff;">05</div>
+    <div class="s-step" style="color:var(--orange-lt);">Step 5 — Print the blue layer</div>
+    <div class="s-title" style="color:var(--cream);">Switched cartridges to blue.</div>
+    <div class="s-body" style="color:rgba(242,235,217,0.78);">
+      <p>Placed the paper containing my blue layer on the scan bed. Fed the printed pages back into the printer so that the blue could be printed on top of the yellow.</p>
+      <p>Here's the output. I didn't play much with overlap based on the instructors advice for the particular colors I had picked. But I could have had more of my blue and yellow elements overlap so that they created areas of green ink. Something to try next time.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL NOTE: Experimenting with paper — burgundy text then full-width image -->
+<div class="full-text" style="background:var(--burgundy);">
+  <div class="s-step" style="color:rgba(255,255,255,0.4);">Final note — Experimenting with the paper</div>
+  <div class="s-body" style="color:rgba(255,255,255,0.82);">
+    <p>I experimented with different textures and colors of paper for the final print — and got some really interesting and unexpected variations. And its very satisfying to see them all laid out like this 🙂</p>
+  </div>
+</div>
+<div class="full-img cover-img">
+  <img src="riso-img-05.jpg" alt="Six Riso prints laid out on white, blue, pink, cream and kraft paper showing colour variations">
+</div>
+
+<!-- FOOTER -->
+<div class="guide-footer">
+  <div class="guide-footer-text">
+    Baby's first Riso · Still Making · May 2026<br>
+    Addendum to Weekly No. 6
+  </div>
+  <div class="guide-footer-mark">make bad art ✦</div>
+</div>
+
+</div>
+</div>
+</body>
+</html>
