@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Making · Weekly 7 · Sausage Making</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper:      #F0EAE0;
+  --aged:       #DDD4C4;
+  --ink:        #221E18;
+  --night:      #1A1612;
+  --dust:       #907E72;
+  --rust:       #B0502A;
+  --ochre:      #C09030;
+  --sage:       #6A7D60;
+  --mauve:      #806070;
+  --orange:     #D4570A;
+  --burgundy:   #7A1F2E;
+  --teal:       #1F5A58;
+  --rust-tint:  #F5EDE7;
+  --ochre-tint: #F5F0E4;
+  --sage-tint:  #E9EEE7;
+  --mauve-tint: #EEE8ED;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #2A2420;
+  font-family: 'Lora', Georgia, serif;
+  color: var(--ink);
+  max-width: 760px;
+  margin: 0 auto;
+}
+.page { background: var(--paper); }
+
+/* ── MASTHEAD ── */
+.masthead {
+  background: var(--night);
+  color: var(--paper);
+  padding: 48px 40px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.masthead-bignum {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 220px;
+  line-height: 1;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  letter-spacing: -8px;
+  pointer-events: none;
+  user-select: none;
+}
+.masthead-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dust);
+  margin-bottom: 28px;
+}
+.masthead-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 52px;
+  line-height: 1.02;
+  color: var(--paper);
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+.masthead-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+  gap: 20px;
+}
+.masthead-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--dust);
+  line-height: 1.9;
+}
+.masthead-meta span { color: var(--paper); }
+.masthead-meta .phase-note {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 12.5px;
+  color: rgba(240,234,224,0.5);
+  display: block;
+  margin-top: 6px;
+  line-height: 1.55;
+  max-width: 420px;
+}
+.masthead-tamil {
+  font-size: 22px;
+  color: rgba(255,255,255,0.1);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.masthead-bar {
+  height: 2px;
+  background: var(--orange);
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+}
+.masthead-botanical {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* ── TORN EDGE ── */
+.torn-bottom {
+  height: 32px;
+  background: var(--night);
+  position: relative;
+}
+.torn-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0; right: 0;
+  height: 32px;
+  background: var(--paper);
+  clip-path: polygon(
+    0% 100%, 1% 30%, 2.5% 80%, 4% 20%, 6% 70%, 8% 15%,
+    10% 65%, 12% 25%, 14% 75%, 16% 10%, 18% 60%, 20% 30%,
+    22% 80%, 24% 20%, 26% 70%, 28% 10%, 30% 55%, 32% 25%,
+    34% 70%, 36% 15%, 38% 60%, 40% 30%, 42% 80%, 44% 20%,
+    46% 65%, 48% 10%, 50% 50%, 52% 25%, 54% 75%, 56% 15%,
+    58% 60%, 60% 30%, 62% 75%, 64% 20%, 66% 65%, 68% 10%,
+    70% 55%, 72% 25%, 74% 70%, 76% 15%, 78% 60%, 80% 30%,
+    82% 80%, 84% 20%, 86% 65%, 88% 10%, 90% 55%, 92% 25%,
+    94% 72%, 96% 18%, 98% 62%, 100% 35%, 100% 100%
+  );
+}
+
+/* ── OPENING ── */
+.opening {
+  padding: 52px 40px 40px;
+}
+.opening-body p {
+  font-family: 'Lora', serif;
+  font-size: 16.5px;
+  line-height: 1.78;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.opening-body p:last-child { margin-bottom: 0; }
+
+/* ── BOLD TILE SECTIONS ── */
+.tile { position: relative; overflow: hidden; }
+
+.tile-header {
+  padding: 32px 40px 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.tile-header-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 96px;
+  line-height: 1;
+  opacity: 0.13;
+  letter-spacing: -3px;
+  pointer-events: none;
+  user-select: none;
+  /* sits above title as a display line, not absolute */
+  margin-bottom: -8px;
+}
+.tile-watermark {
+  position: absolute;
+  bottom: 10px;
+  right: 28px;
+  font-size: 52px;
+  opacity: 0.12;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.tile-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: 0.65;
+}
+.tile-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  line-height: 1.05;
+  position: relative;
+  z-index: 1;
+  /* keep clear of Tamil watermark on the right */
+  padding-right: 80px;
+}
+
+.tile-body {
+  background: var(--paper);
+  padding: 36px 40px 44px;
+}
+.tile-body p {
+  font-family: 'Lora', serif;
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.tile-body p:last-child { margin-bottom: 0; }
+
+/* rust */
+.tile-rust .tile-header { background: var(--rust); color: var(--paper); }
+/* zine — dark */
+.tile-zine .tile-header { background: var(--night); color: var(--paper); }
+.tile-zine .tile-body { background: #1E1914; }
+.tile-zine .tile-body p { color: rgba(240,234,224,0.8); }
+/* sage */
+.tile-sage .tile-header { background: var(--sage); color: var(--paper); }
+
+/* ── SEWING PHOTO LAYOUT ── */
+.sewing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 28px 0;
+}
+.sewing-img { background: #f0ece6; overflow: hidden; }
+.sewing-img.tall { grid-row: span 2; }
+.sewing-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #f0ece6;
+}
+.sewing-img { aspect-ratio: 3/4; }
+
+/* ── ZINE CAROUSEL ── */
+.carousel-outer {
+  margin: 32px 0 0;
+  overflow: hidden;
+  padding: 0 40px;
+}
+.carousel-track {
+  display: flex;
+  gap: 12px;
+  transition: transform 0.42s cubic-bezier(0.25,0.46,0.45,0.94);
+  will-change: transform;
+}
+.carousel-slide {
+  flex: 0 0 72%;
+  background: #111;
+  position: relative;
+}
+.carousel-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: contain;
+  display: block;
+  background: #f8f6f2;
+}
+.carousel-caption {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--dust);
+  letter-spacing: 0.1em;
+  padding: 10px 14px;
+  background: #1A1612;
+}
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 40px 40px;
+}
+.carousel-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--paper);
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+.carousel-btn:hover { border-color: var(--orange); background: rgba(212,87,10,0.12); }
+.carousel-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--dust);
+  letter-spacing: 0.15em;
+}
+
+/* ── OUTLINE STEPS ── */
+.outline-steps {
+  border-left: 3px solid var(--sage);
+  padding: 20px 24px;
+  margin: 28px 0;
+  background: rgba(106,125,96,0.07);
+}
+.outline-steps ol { padding-left: 20px; }
+.outline-steps li {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  line-height: 1.72;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.outline-steps li:last-child { margin-bottom: 0; }
+.outline-steps li ol { margin-top: 8px; }
+
+/* ── CLOSING ── */
+.closing {
+  padding: 52px 40px 40px;
+  border-top: 1px solid var(--aged);
+}
+.closing-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dust);
+  margin-bottom: 14px;
+}
+.closing-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  color: var(--ink);
+  margin-bottom: 26px;
+}
+.closing-body p {
+  font-family: 'Lora', serif;
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.action-block {
+  background: var(--night);
+  padding: 30px 36px;
+  margin-top: 36px;
+}
+.action-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dust);
+  margin-bottom: 16px;
+}
+.action-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.action-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--ochre);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 36px;
+}
+.action-text {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--paper);
+}
+.action-text em { font-style: italic; color: var(--ochre); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--night);
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--dust);
+  letter-spacing: 0.1em;
+}
+.footer-tamil {
+  font-size: 18px;
+  color: rgba(255,255,255,0.1);
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-bignum">7</div>
+  <svg class="masthead-botanical" width="110" height="130" viewBox="0 0 110 130" fill="none">
+    <circle cx="28" cy="28" r="20" stroke="#D4570A" stroke-width="1.2"/>
+    <path d="M28 8Q36 18 28 28Q20 18 28 8Z" fill="#D4570A" opacity="0.55"/>
+    <path d="M48 28Q38 36 28 28Q38 20 48 28Z" fill="#D4570A" opacity="0.55"/>
+    <path d="M28 48Q20 38 28 28Q36 38 28 48Z" fill="#D4570A" opacity="0.55"/>
+    <path d="M8 28Q18 20 28 28Q18 36 8 28Z" fill="#D4570A" opacity="0.55"/>
+    <circle cx="28" cy="28" r="4" fill="#D4570A" opacity="0.8"/>
+    <path d="M55 75Q60 55 78 50Q73 70 86 80Q66 77 55 75Z" stroke="#D4570A" stroke-width="1" fill="none"/>
+    <path d="M58 88Q63 68 78 55" stroke="#D4570A" stroke-width="1.2"/>
+    <path d="M58 88L58 126" stroke="#D4570A" stroke-width="1.2"/>
+    <path d="M58 106Q46 96 40 84" stroke="#D4570A" stroke-width="1"/>
+    <path d="M58 116Q70 106 76 94" stroke="#D4570A" stroke-width="1"/>
+    <path d="M86 18Q92 14 98 18Q92 22 86 18Z" fill="#D4570A" opacity="0.65"/>
+    <path d="M96 16Q102 12 108 16" stroke="#D4570A" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="masthead-eyebrow">the wall · weekly check-in · still making</div>
+  <div class="masthead-title">Sausage Making</div>
+  <div class="masthead-bottom">
+    <div class="masthead-meta">
+      Week of <span>25 May 2026</span><br>
+      Mood · <span>Overwhelmed</span><br>
+      Phase · <span>Waxing moon (momentum, action) · Menstrual (Introspective)</span>
+      <span class="phase-note">The moon and I seemed to be at odds this week. I was doing things but the doubts were loud.</span>
+    </div>
+    <div class="masthead-tamil">வார இதழ்</div>
+  </div>
+  <div class="masthead-bar"></div>
+</div>
+<div class="torn-bottom"></div>
+
+<!-- OPENING -->
+<div class="opening">
+  <div class="opening-body">
+    <p>A messy week that was more admin and prep than it was about outcomes.</p>
+    <p>For some of my DIY projects — measuring, researching supplies and ordering them, took most of my time. 'Too many tabs open' might be my default state but its not one thats very good for me.</p>
+  </div>
+</div>
+
+<!-- TILE 1: SEWING PREP -->
+<div class="tile tile-rust">
+  <div class="tile-header">
+    <div class="tile-header-num">01</div>
+    <div class="tile-watermark">தைத்தல்</div>
+
+    <div class="tile-title">Sewing Prep</div>
+  </div>
+  <div class="tile-body">
+    <p>Decided to prep for some sewing projects by doing some batch cutting — this is the part I hate the most. The endless pre-sewing before the sewing. The literal back ache and anxiety that laying out fabric and taking scissors to it causes — ugh. I remind myself that I am doing this for fun.</p>
+    <div class="sewing-grid">
+      <div class="sewing-img tall">
+        <img src="img-00.jpg" alt="Olive silk fabric and sewing pattern on desk"/>
+      </div>
+      <div class="sewing-img">
+        <img src="img-01.jpg" alt="Puff and Pencil pattern pieces on parquet floor"/>
+      </div>
+      <div class="sewing-img">
+        <img src="img-02.jpg" alt="Cut pattern pieces piled with terracotta fabric"/>
+      </div>
+    </div>
+    <p>Like running — you feel good when you are finished. During? It's anyone's guess. Sometimes its the runners high. Sometimes you aren't sure if you are going to throw up.</p>
+  </div>
+</div>
+
+<!-- TILE 2: ZINE -->
+<div class="tile tile-zine">
+  <div class="tile-header">
+    <div class="tile-header-num">02</div>
+    <div class="tile-watermark">படைப்பு</div>
+
+    <div class="tile-title">I Made a Zine!</div>
+  </div>
+  <div class="tile-body">
+    <p>Inspired by Joy's writing, I did more creative writing this time. Here is some of it — packaged as a zine.</p>
+    <p>I spent a bit of time trying to make this digitally. But in the end went very analog — printing, cutting, pasting. It's definitely my happy place to work this way — in the middle of this lovely venn diagram of constraints meets ease.</p>
+    <p>I might improve on this version or I might not. Its nice to keep the option open instead of never finishing this because it doesn't align with my initial vision. (Nice to see I'm actually practicing this theme that I wrote about last time)</p>
+  </div>
+  <!-- CAROUSEL — outside tile-body padding -->
+  <div style="background:#1E1914; padding-bottom:0;">
+    <div class="carousel-outer">
+      <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img src="img-03.jpg" alt="cover · Unearthing" class="carousel-img"/>
+            <div class="carousel-caption">cover · Unearthing</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img-04.jpg" alt="In this admittedly cliche journey…" class="carousel-img"/>
+            <div class="carousel-caption">In this admittedly cliche journey…</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img-05.jpg" alt="I'm just digging." class="carousel-img"/>
+            <div class="carousel-caption">I'm just digging.</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img-06.jpg" alt="At the heart of the onion." class="carousel-img"/>
+            <div class="carousel-caption">At the heart of the onion.</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img-07.jpg" alt="But at the heart of it —" class="carousel-img"/>
+            <div class="carousel-caption">But at the heart of it —</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img-08.jpg" alt="She hasn't yet been told." class="carousel-img"/>
+            <div class="carousel-caption">She hasn't yet been told.</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img-09.jpg" alt="She's still there — waiting to play." class="carousel-img"/>
+            <div class="carousel-caption">She's still there — waiting to play.</div>
+          </div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="prevBtn">&#8592;</button>
+      <button class="carousel-btn" id="nextBtn">&#8594;</button>
+      <span class="carousel-count" id="carouselCount">1 / 7</span>
+    </div>
+  </div>
+</div>
+
+<!-- TILE 3: SEEING THE BIG PICTURE -->
+<div class="tile tile-sage">
+  <div class="tile-header">
+    <div class="tile-header-num">03</div>
+    <div class="tile-watermark">உணர்வு</div>
+
+    <div class="tile-title">Seeing the Big Picture</div>
+  </div>
+  <div class="tile-body">
+    <p>The theme in both of my art classes this week was about seeing the whole before you see the parts.</p>
+    <p>In animation we did very quick sketches of a live person who was moving about. And for these sketches you are meant to focus on the key lines of the person and the main 'action' i.e. whats moving. I found this incredibly hard.</p>
+    <p>At work, I am more likely than not the person focused on the big picture. If I can't zoom out enough to see what the problem is or what a set of insights look like, I can't make sense of it. I'm usually the one asking my team or clients to pull themselves out of weeds to see how things join up.</p>
+    <p>So it was quite the bruise to my self-image, to realise that when it comes to drawing i.e. truly observing/perceiving things, I get caught up in the details.</p>
+    <p>In a drawing class, the tutor went back to the very basics. I spent 2 hours trying to draw a passable circle and a cube. The technique for both, or pretty much anything, is the same — draw the simplest, roughest outline of the whole picture with simple straight lines before you start focusing on curves, details, shading etc.</p>
+    <p>When drawing, I do get caught up in the detail. A lot.</p>
+    <p>After these art classes, I realised, I do this in my work too. While I do focus on the big picture when it comes to understanding things, when creating outputs (decks, narratives, speeches) I do get caught up on the detail of things when I should be working on a bigger outline. And this habit isn't helping me. I have many instinctive workarounds — like outlining on paper or in nested bullets, away from slide decks that might distract me. But these have felt tactical.</p>
+    <p>Accepting this contradiction in how I see the world is helpful — I think big picture first but I do make things details first.</p>
+    <p>Unlearning this <em>details-first</em> habit, will make making things a lot less frustrating. Something to add to my practice.</p>
+  </div>
+</div>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="closing-label">this week / next week</div>
+  <div class="closing-title">This week / Next week</div>
+  <div class="closing-body">
+    <p>I've been struggling to get into a routine with exercise and meditation so thats the focus for next week.</p>
+    <p>I've been feeling a sense of time slipping away. The answer is definitely not trying to do more things more frantically. So I'm going to practice <em>intention</em> and slowing things down deliberately.</p>
+  </div>
+  <div class="action-block">
+    <div class="action-label">carrying forward</div>
+    <div class="action-item">
+      <div class="action-num">01</div>
+      <div class="action-text">Exercise and meditation — into a routine. <em>Intention, not more frantic doing.</em></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-text">still making · week of 25 may 2026</div>
+  <div class="footer-tamil">படைப்பு</div>
+</div>
+
+</div>
+
+<script>
+const track = document.getElementById('carouselTrack');
+const slides = track ? Array.from(track.querySelectorAll('.carousel-slide')) : [];
+const countEl = document.getElementById('carouselCount');
+let current = 0;
+
+function slideWidth() {
+  if (!slides[0]) return 0;
+  const style = getComputedStyle(track);
+  const gap = parseFloat(style.gap) || 12;
+  return slides[0].offsetWidth + gap;
+}
+function go(n) {
+  current = Math.max(0, Math.min(n, slides.length - 1));
+  track.style.transform = `translateX(-${current * slideWidth()}px)`;
+  if (countEl) countEl.textContent = `${current + 1} / ${slides.length}`;
+}
+document.getElementById('prevBtn')?.addEventListener('click', () => go(current - 1));
+document.getElementById('nextBtn')?.addEventListener('click', () => go(current + 1));
+let sx = 0;
+track?.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+track?.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - sx;
+  if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
+}, {passive:true});
+</script>
+</body>
+</html>
