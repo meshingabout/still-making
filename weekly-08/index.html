@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Making · Weekly 8 · Hyperfocus</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F0EAE0;
+    --aged:#DDD4C4;
+    --ink:#221E18;
+    --night:#1A1612;
+    --dust:#907E72;
+    --rust:#B0502A;
+    --ochre:#C09030;
+    --sage:#6A7D60;
+    --mauve:#806070;
+    --orange:#D4570A;
+    --burgundy:#7A1F2E;
+    --teal:#1F5A58;
+    --rust-tint:#C47A52;
+    --ochre-tint:#A87828;
+    --sage-tint:#4E6B46;
+    --mauve-tint:#6B4E62;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    font-family:'Lora', serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  p{ margin-bottom:18px; }
+  p:last-child{ margin-bottom:0; }
+
+  em{ font-style:italic; }
+  strong{ font-weight:600; }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    background:var(--night);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+    padding:48px 28px 36px;
+  }
+  .masthead-bignum{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:clamp(140px, 42vw, 240px);
+    line-height:1;
+    color:rgba(240,234,224,0.05);
+    position:absolute;
+    top:-22px;
+    right:-12px;
+    pointer-events:none;
+    z-index:0;
+  }
+  .botanical{ position:absolute; pointer-events:none; z-index:1; }
+  .botanical-mast{ bottom:-8px; left:6px; width:72px; height:104px; opacity:0.16; }
+  .botanical-bird{ top:30px; right:24px; width:46px; height:24px; opacity:0.18; }
+  .botanical-finale{ top:14px; right:10px; width:140px; height:96px; opacity:0.12; }
+  .botanical-section{ bottom:8px; left:-10px; width:90px; height:120px; opacity:0.1; }
+
+  .masthead-eyebrow{
+    font-family:'DM Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--dust);
+    margin-bottom:30px;
+    position:relative;
+    z-index:2;
+  }
+  .masthead-title{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:clamp(42px, 13vw, 66px);
+    line-height:1.05;
+    position:relative;
+    z-index:2;
+    margin-bottom:40px;
+  }
+  .masthead-title .italic-line{
+    display:block;
+    font-family:'Lora', serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:0.4em;
+    color:var(--orange);
+    margin-top:12px;
+    letter-spacing:0.01em;
+  }
+  .masthead-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:20px;
+    position:relative;
+    z-index:2;
+  }
+  .masthead-meta{
+    font-family:'DM Mono', monospace;
+    font-size:12.5px;
+    line-height:2;
+    color:var(--aged);
+  }
+  .masthead-meta span{ color:var(--paper); }
+  .masthead-tamil{
+    font-family:'Lora', serif;
+    font-size:22px;
+    color:var(--orange);
+    opacity:0.55;
+    white-space:nowrap;
+  }
+  .masthead-bar{
+    height:3px;
+    width:64px;
+    background:var(--orange);
+    margin-top:30px;
+    position:relative;
+    z-index:2;
+  }
+
+  /* ---------- TORN EDGE ---------- */
+  .torn-bottom{
+    height:18px;
+    background-color:var(--night);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='18' viewBox='0 0 36 18'%3E%3Cpolygon points='0,18 9,2 18,18 27,2 36,18' fill='%23F0EAE0'/%3E%3C/svg%3E");
+    background-repeat:repeat-x;
+    background-position:bottom left;
+    background-size:36px 18px;
+  }
+
+  /* ---------- OPENING ---------- */
+  .opening{
+    max-width:640px;
+    margin:0 auto;
+    padding:48px 28px 56px;
+  }
+  .opening .lede{
+    font-family:'Lora', serif;
+    font-style:italic;
+    font-size:20px;
+    margin-bottom:26px;
+  }
+
+  /* ---------- GENEROUS LIST ---------- */
+  .generous-list{
+    list-style:none;
+    margin:28px 0;
+    padding-left:22px;
+    border-left:2px solid var(--rust);
+  }
+  .generous-list li{
+    font-family:'Lora', serif;
+    font-style:italic;
+    margin-bottom:14px;
+    padding-left:2px;
+  }
+  .generous-list li:last-child{ margin-bottom:0; }
+
+  /* ---------- SECTIONS ---------- */
+  .section{
+    position:relative;
+    overflow:hidden;
+    padding:60px 28px;
+  }
+  .section-inner{
+    max-width:640px;
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+  }
+  .accent-wolf{ background:#0D2B1F; color:var(--paper); }
+  .accent-wolf .section-label{ color:rgba(240,234,224,0.6); }
+  .accent-wolf .section-watermark{ color:rgba(240,234,224,0.08); }
+  .accent-wolf .section-title{ color:var(--paper); }
+  .accent-wolf .emphasis-line{ color:rgba(240,234,224,0.9); }
+  .accent-rust{ background:var(--rust-tint); color:var(--paper); }
+  .accent-sage{ background:var(--sage-tint); color:var(--paper); }
+  .accent-ochre{ background:var(--ochre-tint); color:var(--paper); }
+  .accent-mauve{ background:var(--mauve-tint); color:var(--paper); }
+  .accent-rust .section-label,
+  .accent-sage .section-label,
+  .accent-ochre .section-label,
+  .accent-mauve .section-label{ color:rgba(240,234,224,0.6); }
+  .accent-rust .section-watermark,
+  .accent-sage .section-watermark,
+  .accent-ochre .section-watermark,
+  .accent-mauve .section-watermark{ color:rgba(240,234,224,0.12); }
+
+  .section-watermark{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:clamp(110px, 42vw, 210px);
+    position:absolute;
+    line-height:1;
+    top:-26px;
+    right:-14px;
+    pointer-events:none;
+    z-index:1;
+    opacity:0.07;
+  }
+  .accent-rust .section-watermark{ color:var(--rust); }
+  .accent-sage .section-watermark{ color:var(--sage); }
+  .accent-ochre .section-watermark{ color:var(--ochre); }
+  .accent-mauve .section-watermark{ color:var(--mauve); }
+
+  .section-label{
+    font-family:'DM Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--dust);
+    margin-bottom:16px;
+  }
+  .accent-rust .section-label{ color:var(--rust); }
+  .accent-sage .section-label{ color:var(--sage); }
+  .accent-ochre .section-label{ color:var(--ochre); }
+  .accent-mauve .section-label{ color:var(--mauve); }
+
+  .section-title{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:clamp(28px, 8vw, 38px);
+    line-height:1.18;
+    margin-bottom:18px;
+  }
+  .section-lede{
+    font-family:'Lora', serif;
+    font-style:italic;
+    font-size:18.5px;
+    opacity:0.8;
+    margin-bottom:22px;
+  }
+  .emphasis-line{
+    font-style:italic;
+    font-weight:600;
+    font-size:19px;
+    margin:26px 0;
+  }
+  .big-statement{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:clamp(24px, 7.2vw, 32px);
+    line-height:1.3;
+    margin-bottom:22px;
+  }
+
+  .body-list{
+    list-style:disc;
+    padding-left:24px;
+    margin:20px 0;
+  }
+  .body-list li{
+    font-family:'Lora', serif;
+    margin-bottom:10px;
+    padding-left:4px;
+  }
+  .body-list li:last-child{ margin-bottom:0; }
+
+  /* ---------- IMAGE PLACEHOLDERS ---------- */
+  .img-placeholder{
+    border:1.5px dashed var(--dust);
+    background:#F8F4EE;
+    border-radius:2px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:'DM Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.06em;
+    line-height:1.6;
+    color:var(--dust);
+    text-transform:uppercase;
+    margin:24px 0;
+    padding:18px;
+    aspect-ratio:4/3;
+  }
+  .img-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:24px 0;
+  }
+  .img-row .img-placeholder{ margin:0; }
+  @media (max-width:520px){
+    .img-row{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    max-width:640px;
+    margin:0 auto;
+    padding:60px 28px;
+  }
+  .closing .section-label{
+    text-transform:lowercase;
+    color:var(--dust);
+    margin-bottom:10px;
+  }
+  .closing .section-title{ margin-bottom:22px; }
+
+  /* ---------- FINALE ---------- */
+  .finale{
+    background:var(--night);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+    padding:76px 28px;
+  }
+  .finale-text{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:clamp(28px, 9vw, 46px);
+    line-height:1.28;
+    max-width:640px;
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer{
+    background:var(--night);
+    color:var(--dust);
+    font-family:'DM Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.12em;
+    text-transform:lowercase;
+    padding:26px 28px 44px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+  }
+  .footer-tamil{
+    font-family:'Lora', serif;
+    color:var(--orange);
+    font-size:18px;
+    opacity:0.6;
+  }
+</style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-bignum">08</div>
+    <svg class="botanical botanical-mast" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M10 135 C 20 95, 5 60, 28 15" stroke="#D4570A" stroke-width="1.5" fill="none"/>
+      <circle cx="28" cy="15" r="5" fill="#D4570A"/>
+      <circle cx="18" cy="28" r="3.5" fill="#D4570A"/>
+      <circle cx="36" cy="34" r="3" fill="#D4570A"/>
+      <circle cx="14" cy="50" r="3" fill="#D4570A"/>
+    </svg>
+    <svg class="botanical botanical-bird" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M2 15 C 8 5, 12 5, 18 12 C 24 5, 28 5, 38 15" stroke="#D4570A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </svg>
+
+    <div class="masthead-eyebrow">the wall · weekly check-in · still making</div>
+
+    <div class="masthead-title">
+      Hyperfocus
+    </div>
+
+    <div class="masthead-bottom">
+      <div class="masthead-meta">
+        Week of <span>1 June 2026</span><br>
+        Mood · <span>contemplative</span><br>
+        Phase · <span>Ovulatory (higher energy) · Waning gibbous (self-assessment, reflection)</span>
+      </div>
+      <div class="masthead-tamil">வார இதழ்</div>
+    </div>
+
+    <div class="masthead-bar"></div>
+  </div>
+  <div class="torn-bottom"></div>
+
+  <!-- OPENING -->
+  <div class="opening">
+    <p class="lede"><em>My paati (grandma) used to call me absent minded professor.</em></p>
+
+    <p>Imagine me a few decades ago - a skinny little brown girl running around slightly panicked because my mother has been yelling my name for a good five minutes and I only just heard it. My mother's voice hitting a lethal pitch seemed to be the only thing that could bring me out of whatever caught my fancy that day - lost in a book. Or a newspaper. Or a daydream.</p>
+
+    <p>I'm still that girl in many ways. I swing wildly from lazy inaction to whirling dervish. And while I am in dervish mode - I hyperfocus and the real world falls away.</p>
+
+    <p>I get lost in the thing I'm doing and ignore eating or drinking. If I do interact with anyone or anything during this time, I'm distracted or irritated or both. Not a nice feeling for those around me I am sure.</p>
+
+    <p>I spent most of last week in a hyperfocus haze - sewing and finishing up a couple of home projects.</p>
+
+    <p>Sewing, like reading, gets me into hyperfocus mode very reliably.</p>
+
+    <p>This might be because I am still very very new to sewing and I am still getting used to the physical and a mental challenge of sewing.</p>
+
+    <p>It is physically demanding in many ways</p>
+
+    <ul class="body-list">
+      <li>the sheer mind-body coordination and precision it takes to press the sewing pedal just the right amount while controlling and feeding the fabric in the right way</li>
+      <li>The precision it takes to cut out fabric bent over on the floor in the weirdest angles</li>
+      <li>Folding up seams</li>
+      <li>Endless ironing</li>
+      <li>Even more endless cleanup</li>
+    </ul>
+
+    <p>Sewing is mentally challenging too - It takes a lot of spatial imagination in a way that I hadn't appreciated before I started to sew. When you're sewing - you are working in reverse and you are converting a 2-d object(fabric) into 3-d (a garment). It feels disorienting. Imagine you are staring at a mirror and trying to draw a mirror image of your own face, with your non dominant hand. That gives you an idea of what sewing feels like most of the time.</p>
+
+    <p>Maybe a time will come when sewing feels like muscle memory to me. But for now. I still get lost in a haze where the hours and days disappear. (and I seem to make very little progress but that is not what we will focus on today)</p>
+  </div>
+
+  <!-- SECTION 01 — FEED THE WOLF -->
+  <div class="section accent-wolf">
+    <div class="section-watermark">உணர்வு</div>
+    <div class="section-inner">
+      <div class="section-label">01</div>
+      <div class="section-title">Feed the wolf</div>
+
+      <p>In a weird coincidence wolves have come up in fiction and non-fiction I have read recently.</p>
+
+      <p>In a non-fiction book I read called <em>Wintering</em>, the author brings up various stories about wolves in Britain. how they were hunted to near extinction. How wolves behave, particularly in winter. And how they are an enduring symbol of survival.</p>
+
+      <p>In fiction - the <em>Realm of the Elderlings</em> saga has a wolf character that bonds to a human and is able to share his thoughts. This wolf is one of the best ever fictional characters that I have read. In both these books, there are similar themes.</p>
+
+      <p class="emphasis-line">Wolves live in the now.</p>
+
+      <p>They are always hungry. And they will feast today knowing that famine will come someday.</p>
+
+      <p>We all have a bit of the wolf in us - we want to give ourselves to the headiness of living in the now. But our human brain loves to be dragged into the what-ifs of the past or commitments we have made to our future.</p>
+
+      <p>Bringing it back to hyperfocus and living in the moment - whenever I emerge from my hours or days of being lost in something, it usually comes with an unnamed guilt. As if I am a child that has sneaked too many sweets (gulab jamuns in my case). The guilt sours the pleasure of having fully immersed or enjoyed myself.</p>
+
+      <p>What we can learn from wolves is the guilt-free indulgence in pleasure. What would it be like to accept this inner wolf and let it range farther?</p>
+    </div>
+  </div>
+
+  <!-- SECTION 03 — NEW LEVEL UNLOCKED: ELECTRICALS -->
+  <div class="section accent-ochre">
+    <div class="section-inner">
+      <div class="section-label">03</div>
+      <div class="section-title">New level unlocked - Electricals</div>
+
+      <p>I learned basic electrical DIY in a workshop. Surprisingly fun and calming.</p>
+
+      <p>I have since rewired a lamp</p>
+
+      <img src="img-00.jpg" alt="Electrical workshop — holding a wired bulb" style="display:block;width:100%;max-height:540px;object-fit:contain;background:#F8F4EE;margin:24px 0;">
+
+      <p>And closed out two plug sockets</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0;">
+        <figure style="margin:0;">
+          <img src="img-01.jpg" alt="Plug sockets — before" style="display:block;width:100%;height:260px;object-fit:cover;background:#F8F4EE;">
+          <figcaption style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--dust);margin-top:6px;">before</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <img src="img-02.jpg" alt="Plug sockets — after" style="display:block;width:100%;height:260px;object-fit:cover;background:#F8F4EE;">
+          <figcaption style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--dust);margin-top:6px;">after</figcaption>
+        </figure>
+      </div>
+
+      <p>Ajit jokes that I am making myself AI-proof. Maybe I am. But secretly I think I am trying to make myself apocalypse proof.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 04 — CANVAS RESTRETCHING -->
+  <div class="section accent-mauve">
+    <svg class="botanical botanical-section" viewBox="0 0 90 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M80 4 C 60 30, 70 70, 40 110" stroke="#D4570A" stroke-width="1.5" fill="none"/>
+      <circle cx="40" cy="110" r="5" fill="#D4570A"/>
+      <circle cx="52" cy="92" r="3.5" fill="#D4570A"/>
+      <circle cx="60" cy="60" r="3" fill="#D4570A"/>
+    </svg>
+    <div class="section-inner">
+      <div class="section-label">04</div>
+
+      <p class="big-statement">Also learned how to restretch a canvas - an antique painting we found in Pondicherry</p>
+
+      <img src="img-03.jpg" alt="Antique painting from Pondicherry, framed and hung" style="display:block;width:100%;max-height:520px;object-fit:contain;background:#F8F4EE;margin:24px 0;">
+
+      <p class="big-statement">And put the giant outer wooden frame together</p>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="section-label">this week/next week</div>
+    <div class="section-title">This week/next week</div>
+
+    <p>The commitment I made to be more regular with strength training is going well enough. I'd like to ramp it up next week.</p>
+
+    <p>I even made it to dance class yesterday without significant injury so I'll count that as a double win.</p>
+
+    <p>I will start a new art class next week - hopefully gives me a regular rhythm for drawing.</p>
+  </div>
+
+  <!-- FINALE -->
+  <div class="finale">
+    <svg class="botanical botanical-finale" viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M10 10 C 40 8, 70 20, 130 15" stroke="#D4570A" stroke-width="1.5" fill="none"/>
+      <circle cx="40" cy="9" r="3" fill="#D4570A"/>
+      <circle cx="70" cy="20" r="4" fill="#D4570A"/>
+      <circle cx="100" cy="14" r="3" fill="#D4570A"/>
+      <path d="M105 50 C 110 45, 118 45, 122 50 C 118 52, 112 52, 105 50 Z" fill="#D4570A"/>
+      <path d="M105 50 L 98 47" stroke="#D4570A" stroke-width="1.5" fill="none"/>
+    </svg>
+    <div class="finale-text">The only magic to making anything is sitting yourself down often enough to actually do the thing.</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>still making · week of 1 june 2026</div>
+    <div class="footer-tamil">படைப்பு</div>
+  </div>
+
+</body>
+</html>
