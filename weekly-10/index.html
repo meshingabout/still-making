@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Making · Weekly 10 · Object Permanence</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #F0EAE0;
+    --aged:     #DDD4C4;
+    --ink:      #221E18;
+    --night:    #1A1612;
+    --dust:     #907E72;
+    --rust:     #B0502A;
+    --ochre:    #C09030;
+    --sage:     #6A7D60;
+    --mauve:    #806070;
+    --orange:   #D4570A;
+    --burgundy: #7A1F2E;
+    --teal:     #1F5A58;
+    --rust-tint:  #F5EDE7;
+    --ochre-tint: #F5F0E4;
+    --sage-tint:  #E9EEE7;
+    --mauve-tint: #EEE8ED;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--aged);
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--paper);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+  }
+
+  /* ── MASTHEAD ─────────────────────────────── */
+  .masthead {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-bignum {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(160px, 28vw, 220px);
+    line-height: 0.85;
+    color: rgba(240,234,224,0.06);
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    letter-spacing: -0.04em;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dust);
+    margin-bottom: 24px;
+  }
+
+  .masthead-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(38px, 7vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .masthead-title .italic-line {
+    display: block;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 3vw, 24px);
+    color: var(--orange);
+    letter-spacing: 0;
+    margin-top: 8px;
+  }
+
+  .masthead-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+  }
+
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(240,234,224,0.6);
+    line-height: 1.85;
+  }
+
+  .masthead-meta span {
+    color: rgba(240,234,224,0.9);
+  }
+
+  .masthead-tamil {
+    font-size: 22px;
+    color: rgba(240,234,224,0.22);
+    letter-spacing: 0.04em;
+  }
+
+  .masthead-bar {
+    height: 3px;
+    background: var(--orange);
+    margin-top: 28px;
+    opacity: 0.9;
+  }
+
+  /* botanical SVGs */
+  .masthead-botanical {
+    position: absolute;
+    bottom: 36px;
+    left: 40px;
+    opacity: 0.10;
+    pointer-events: none;
+  }
+
+  /* ── TORN EDGE ────────────────────────────── */
+  .torn-bottom {
+    height: 28px;
+    background: var(--night);
+    position: relative;
+    overflow: hidden;
+  }
+  .torn-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: var(--paper);
+    clip-path: polygon(
+      0% 100%, 2% 20%, 5% 80%, 8% 10%, 11% 70%, 14% 30%, 17% 90%,
+      20% 20%, 23% 75%, 26% 15%, 29% 65%, 32% 25%, 35% 80%,
+      38% 10%, 41% 70%, 44% 30%, 47% 85%, 50% 15%, 53% 70%,
+      56% 25%, 59% 80%, 62% 20%, 65% 75%, 68% 10%, 71% 65%,
+      74% 30%, 77% 85%, 80% 20%, 83% 70%, 86% 15%, 89% 65%,
+      92% 25%, 95% 75%, 98% 20%, 100% 60%, 100% 100%
+    );
+  }
+
+  /* ── OPENING ──────────────────────────────── */
+  .opening {
+    padding: 52px 52px 40px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--aged);
+  }
+
+  .opening-lede {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 24px;
+    opacity: 0.9;
+  }
+
+  .opening p {
+    font-size: 15.5px;
+    line-height: 1.78;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  /* ── FARAWAY TREE SECTION ─────────────────── */
+  .section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-inner {
+    padding: 52px 52px 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-watermark {
+    position: absolute;
+    font-size: clamp(80px, 18vw, 130px);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    opacity: 0.045;
+    top: 20px;
+    right: -10px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .accent-rust .section-label  { color: var(--rust); }
+  .accent-ochre .section-label { color: var(--ochre); }
+  .accent-sage .section-label  { color: var(--sage); }
+  .accent-mauve .section-label { color: var(--mauve); }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 4.5vw, 38px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+
+  /* theme block earthy brown backgrounds — clearly distinct steps */
+  .theme-01 { background: #F0E6DC; }
+  .theme-02 { background: #DFD0BA; }
+  .theme-03 { background: #CDB99E; }
+  .theme-04 { background: #BCA285; }
+
+  .section-body p {
+    font-size: 15.5px;
+    line-height: 1.78;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .section-body p:last-child { margin-bottom: 0; }
+
+  /* ── FOUR-THEMES SECTION ──────────────────── */
+  .themes-section {
+    padding: 0;
+  }
+
+  .themes-intro {
+    padding: 52px 52px 0;
+  }
+
+  .themes-intro p {
+    font-size: 15.5px;
+    line-height: 1.78;
+    margin-bottom: 16px;
+  }
+
+  .theme-block {
+    padding: 48px 52px 40px;
+    border-top: 1px solid var(--aged);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .theme-block:first-of-type {
+    border-top: none;
+  }
+
+  /* Bold poster headline numbers */
+  .theme-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.5;
+    display: block;
+  }
+
+  .theme-headline {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 5.5vw, 46px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+
+  /* accent lines per theme */
+  .theme-01 .theme-headline { color: var(--rust); }
+  .theme-02 .theme-headline { color: var(--ochre); }
+  .theme-03 .theme-headline { color: var(--sage); }
+  .theme-04 .theme-headline { color: var(--mauve); }
+
+  .theme-ghost-num {
+    position: absolute;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(120px, 22vw, 180px);
+    line-height: 1;
+    top: -16px;
+    right: 20px;
+    pointer-events: none;
+    opacity: 0.04;
+    letter-spacing: -0.04em;
+  }
+  .theme-01 .theme-ghost-num { color: var(--rust); }
+  .theme-02 .theme-ghost-num { color: var(--ochre); }
+  .theme-03 .theme-ghost-num { color: var(--sage); }
+  .theme-04 .theme-ghost-num { color: var(--mauve); }
+
+  .theme-body p {
+    font-size: 15.5px;
+    line-height: 1.78;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+
+  .theme-body p:last-child { margin-bottom: 0; }
+
+  .theme-body em {
+    font-style: italic;
+  }
+
+  /* sub-note indented lines */
+  .theme-subnote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--dust);
+    padding-left: 20px;
+    border-left: 2px solid var(--aged);
+    margin: 12px 0 14px;
+  }
+
+  /* ── THIS WEEK / NEXT WEEK ────────────────── */
+  .closing {
+    background: var(--night);
+    color: var(--paper);
+    padding: 52px 52px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing-watermark {
+    position: absolute;
+    font-size: 90px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    opacity: 0.04;
+    bottom: 10px;
+    right: 20px;
+    pointer-events: none;
+  }
+
+  .closing-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    margin-bottom: 20px;
+  }
+
+  .closing-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 4vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    margin-bottom: 28px;
+  }
+
+  .closing-body p {
+    font-size: 15px;
+    line-height: 1.78;
+    color: rgba(240,234,224,0.82);
+    margin-bottom: 14px;
+  }
+
+  .closing-list {
+    list-style: none;
+    margin-top: 20px;
+  }
+
+  .closing-list li {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: rgba(240,234,224,0.7);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(240,234,224,0.1);
+    display: flex;
+    gap: 14px;
+  }
+
+  .closing-list li::before {
+    content: '→';
+    color: var(--ochre);
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ───────────────────────────────── */
+  .footer {
+    background: var(--night);
+    border-top: 1px solid rgba(240,234,224,0.08);
+    padding: 20px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    color: rgba(240,234,224,0.3);
+    text-transform: lowercase;
+  }
+
+  .footer-tamil {
+    font-size: 16px;
+    color: rgba(240,234,224,0.12);
+  }
+
+  @media (max-width: 600px) {
+    .masthead, .opening, .section-inner, .themes-intro, .theme-block, .closing, .footer {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .themes-section { padding-bottom: 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── MASTHEAD ── -->
+  <div class="masthead">
+    <div class="masthead-bignum">10</div>
+
+    <!-- botanical SVG -->
+    <svg class="masthead-botanical" width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="80" cy="80" r="38" stroke="#D4570A" stroke-width="1.2"/>
+      <path d="M80 42 C80 42 68 58 68 72 C68 86 80 92 80 92 C80 92 92 86 92 72 C92 58 80 42 80 42Z" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M42 80 C42 80 58 68 72 68 C86 68 92 80 92 80 C92 80 86 92 72 92 C58 92 42 80 42 80Z" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <line x1="80" y1="15" x2="80" y2="42" stroke="#D4570A" stroke-width="1"/>
+      <line x1="80" y1="118" x2="80" y2="145" stroke="#D4570A" stroke-width="1"/>
+      <line x1="15" y1="80" x2="42" y2="80" stroke="#D4570A" stroke-width="1"/>
+      <line x1="118" y1="80" x2="145" y2="80" stroke="#D4570A" stroke-width="1"/>
+      <circle cx="80" cy="80" r="5" fill="none" stroke="#D4570A" stroke-width="1"/>
+    </svg>
+
+    <div class="masthead-eyebrow">the wall · weekly check-in · still making</div>
+    <div class="masthead-title">
+      Object Permanence
+    </div>
+    <div class="masthead-bottom">
+      <div class="masthead-meta">
+        Week of <span>June 15</span><br>
+        Mood · <span>Pensive, Rebellious</span><br>
+        Phase · <span>Luteal (Tired) · New Moon and waxing moon ( reflective ) — this combination means I need go gently as I start new things next week.</span>
+      </div>
+      <div class="masthead-tamil">வார இதழ்</div>
+    </div>
+    <div class="masthead-bar"></div>
+  </div>
+  <div class="torn-bottom"></div>
+
+  <!-- ── OPENING ── -->
+  <div class="opening">
+    <p class="opening-lede">Have you ever read the Faraway tree books?</p>
+    <p>They are children's books by Enid Blyton in which 3 siblings who recently move to the English countryside discover a massive enchanted tree that can take them to distant lands. Imagine a giant redwood tree - now triple the size of it, tall enough to reach the clouds. It is big enough for various eccentric characters to live in its massive trunk. If you climb up to the very tippy top of the tree there is a little ladder going up in to the clouds. Climb up that ladder and you might find yourself in a new land - a land made of candy, or a land where peacocks are people, or a land where everyone walks backwards. Some are nice, some are strange, some are dangerous.</p>
+    <p>Imagine these lands are wedges on a giant spinning disc. When a particular wedge comes close to the faraway tree, you can enter and explore it. But, you have to find your back to the tree before the disc spins away else you are stuck in whatever land you have been exploring. Naturally the books are about the many adventures the children find on top of the faraway tree. As a child, I desperately wanted to visit that tree.</p>
+    <p>As an adult, I think maybe I have created one for myself.</p>
+    <p>This analogy of visiting strange lands feels similar to the feeling of flitting between my many creative interests.</p>
+    <p>Sewing, writing, drawing, embroidery, lampshade-making, strength training my bendy body, running. And that is only what I have done in the last 6 months.</p>
+    <p>I am drawn to this faraway tree/ magic land analogy for a few reasons</p>
+  </div>
+
+  <!-- ── FOUR THEMES ── -->
+  <div class="themes-section">
+
+    <!-- Theme 1 -->
+    <div class="theme-block theme-01">
+      <div class="theme-ghost-num">1</div>
+      <span class="theme-num">01</span>
+      <div class="theme-headline">I don't always get to choose which land I explore.</div>
+      <div class="theme-body">
+        <p>I wake up in the morning and plan to draw only to find myself 6 hours into sewing something</p>
+        <p>I'm learning to accept that I can set intentions for what I want to accomplish but I also need to let my squirrel brain run wild and get its greedy little paws on whatever is calling out in the moment.</p>
+      </div>
+    </div>
+
+    <!-- Theme 2 -->
+    <div class="theme-block theme-02">
+      <div class="theme-ghost-num">2</div>
+      <span class="theme-num">02</span>
+      <div class="theme-headline">Each land feels new even when I have spent years there</div>
+      <div class="theme-body">
+        <p>Since I rotate between creative practices, sometimes its been months, possibly even years, when I come back to a practice. I find myself a stranger in a strange land. It feels like l'm starting from scratch but almost always, the longer I spend there, muscle memory and experience come back.</p>
+        <p>I am trying to be better at making project notes and taking pictures to capture my tips, tricks and lessons learned. Some memory aids to help me on these return visits.</p>
+      </div>
+    </div>
+
+    <!-- Theme 3 -->
+    <div class="theme-block theme-03">
+      <div class="theme-ghost-num">3</div>
+      <span class="theme-num">03</span>
+      <div class="theme-headline">There's always a new land lurking</div>
+      <div class="theme-body">
+        <p>I want to learn literally everything I possibly can. Ok not everything. (Cough. Sports.) But its a pretty long list. The lure of Ceramics land or Upholstery land is very strong. But I am exercising some self-control - for now.</p>
+      </div>
+    </div>
+
+    <!-- Theme 4 -->
+    <div class="theme-block theme-04">
+      <div class="theme-ghost-num">4</div>
+      <span class="theme-num">04</span>
+      <div class="theme-headline">Object Permanence a.k.a how it feels when I am out of the magic land.</div>
+      <div class="theme-body">
+        <p>I have a visual brain and the memory of a goldfish. If something isn't staring me in the face I forget about it. RIP bottom drawer fridge vegetables.</p>
+        <p>If I haven't practiced something even for a few days, for example, I haven't gone to the gym in a week. Or drawn anything in 2 weeks. I become utterly convinced that I have no idea how to do said thing. Obviously I don't consciously think this but on some level I do. I resist re-starting. I make elaborate plans for how I will go back to the practice. I resist some more.</p>
+        <p>Like a child playing peekaboo who gets truly shocked and upset by their parent disappearing from the world, my felt-sense of enjoying a practice or feeling competent at it seems to evaporate when I am not actively doing it.</p>
+        <p>Maybe now that I know that my brain is playing Peekaboo with me, I can let go of the fear. And just learn to play the game.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── THIS WEEK / NEXT WEEK ── -->
+  <div class="closing">
+    <div class="closing-watermark">சுவர்</div>
+    <div class="closing-label">this week / next week</div>
+    <div class="closing-title">This week/ Next week</div>
+    <div class="closing-body">
+      <p>A busy week next week with classes/workshops already booked and my father in law visiting.</p>
+    </div>
+    <ul class="closing-list">
+      <li>Get the writing done earlier in the week.</li>
+      <li>Get 3 workouts in - including 2 more modules in the strength course</li>
+    </ul>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <div class="footer-text">still making · week of june 15 2026</div>
+    <div class="footer-tamil">படைப்பு</div>
+  </div>
+
+</div>
+</body>
+</html>
