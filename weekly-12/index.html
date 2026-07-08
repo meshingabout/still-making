@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Making · Weekly 12 · Hard Graft</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #F0EAE0;
+    --aged:     #DDD4C4;
+    --ink:      #221E18;
+    --night:    #1A1612;
+    --dust:     #907E72;
+    --rust:     #B0502A;
+    --ochre:    #C09030;
+    --sage:     #6A7D60;
+    --mauve:    #806070;
+    --orange:   #D4570A;
+    --burgundy: #7A1F2E;
+    --teal:     #1F5A58;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #2C2620;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 750px;
+    margin: 0 auto;
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  /* ── MASTHEAD ─────────────────────────────────── */
+  .masthead {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-bignum {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 320px;
+    line-height: 1;
+    color: rgba(255,255,255,0.10);
+    position: absolute;
+    top: -40px;
+    right: -30px;
+    letter-spacing: -12px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dust);
+    margin-bottom: 28px;
+  }
+
+  .masthead-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 1.02;
+    color: var(--paper);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -1px;
+  }
+
+  .masthead-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+    gap: 20px;
+  }
+
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(240,234,224,0.65);
+    line-height: 1.8;
+    max-width: 74%;
+  }
+
+  .masthead-meta span { color: rgba(240,234,224,0.9); }
+
+  .masthead-tamil {
+    font-size: 22px;
+    color: rgba(240,234,224,0.2);
+    letter-spacing: 0.05em;
+    font-family: serif;
+    white-space: nowrap;
+  }
+
+  .masthead-bar {
+    height: 3px;
+    background: var(--orange);
+    margin-top: 32px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .masthead-botanical {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* ── TORN PAPER EDGE ──────────────────────────── */
+  .torn-bottom {
+    height: 28px;
+    background: var(--night);
+    position: relative;
+    overflow: hidden;
+  }
+  .torn-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -2%; right: -2%;
+    height: 30px;
+    background: var(--paper);
+    clip-path: polygon(
+      0% 100%, 3% 30%, 6% 80%, 10% 20%, 14% 65%, 18% 10%,
+      22% 55%, 26% 15%, 30% 70%, 34% 25%, 38% 75%, 42% 20%,
+      46% 60%, 50% 5%, 54% 55%, 58% 20%, 62% 70%, 66% 30%,
+      70% 75%, 74% 15%, 78% 60%, 82% 25%, 86% 70%, 90% 20%,
+      94% 65%, 97% 35%, 100% 80%, 100% 100%
+    );
+  }
+
+  /* ── OPENING (cream) ──────────────────────────── */
+  .opening {
+    padding: 48px 48px 8px;
+    position: relative;
+  }
+  .opening .section-label { color: var(--rust); }
+  .opening .section-title { color: var(--ink); }
+  .opening .section-body p { color: var(--ink); }
+  .opening .section-watermark { color: rgba(176,80,42,0.28); }
+
+  .lede-italic {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--rust);
+    margin: 6px 0 18px;
+  }
+
+  /* ── SECTIONS ─────────────────────────────────── */
+  .section {
+    padding: 48px 48px 52px;
+    position: relative;
+  }
+
+  .section-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .section-title-row .section-title,
+  .section-title-row .closing-title {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .section-watermark {
+    font-family: serif;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.45;
+    flex-shrink: 0;
+    padding-bottom: 3px;
+    text-align: right;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  .section-body p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .section-body p:last-child { margin-bottom: 0; }
+
+  .section-body em { font-style: italic; }
+
+  /* Personal emphasis line (author's own words, bold) */
+  .emphasis-line {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    margin: 26px 0 6px;
+    padding-left: 18px;
+    border-left: 3px solid;
+  }
+
+  /* ── SECTION ACCENTS ──────────────────────────── */
+  .section-rust   { background: #3D1E12; color: rgba(240,234,224,0.88); }
+  .section-rust .section-watermark { color: rgba(176,80,42,0.4); }
+  .section-rust .section-label     { color: rgba(212,87,10,0.75); }
+  .section-rust .section-title     { color: #F0EAE0; }
+  .section-rust .section-body p    { color: rgba(240,234,224,0.85); }
+  .section-rust .emphasis-line     { color: #F0EAE0; border-color: var(--orange); }
+
+  .section-ochre  { background: #2A1E04; color: rgba(240,234,224,0.92); }
+  .section-ochre .section-watermark { color: rgba(192,144,48,0.4); }
+  .section-ochre .section-label     { color: rgba(192,144,48,0.8); }
+  .section-ochre .section-title     { color: #F0EAE0; }
+  .section-ochre .section-body p    { color: rgba(240,234,224,0.9); }
+  .section-ochre .emphasis-line     { color: #F0EAE0; border-color: var(--ochre); }
+
+  .section-forest { background: #0D2B1F; color: rgba(240,234,224,0.9); }
+  .section-forest .section-watermark { color: rgba(106,125,96,0.5); }
+  .section-forest .section-label     { color: rgba(140,168,128,0.85); }
+  .section-forest .section-title     { color: #F0EAE0; }
+  .section-forest .section-body p    { color: rgba(240,234,224,0.88); }
+  .section-forest .emphasis-line     { color: #EAF0E4; border-color: var(--sage); }
+
+  .section-burgundy { background: #4A0F1C; color: rgba(240,234,224,0.9); }
+  .section-burgundy .section-watermark { color: rgba(180,90,110,0.45); }
+  .section-burgundy .section-label     { color: rgba(210,130,150,0.85); }
+  .section-burgundy .section-title     { color: #F0EAE0; }
+  .section-burgundy .section-body p    { color: rgba(240,234,224,0.88); }
+  .section-burgundy .emphasis-line     { color: #F0EAE0; border-color: #C25A72; }
+
+  .section-teal { background: #0C2E2C; color: rgba(240,234,224,0.9); }
+  .section-teal .section-watermark { color: rgba(90,170,165,0.4); }
+  .section-teal .section-label     { color: rgba(120,190,185,0.85); }
+  .section-teal .section-title     { color: #F0EAE0; }
+  .section-teal .section-body p    { color: rgba(240,234,224,0.88); }
+  .section-teal .emphasis-line     { color: #EAF6F4; border-color: #3D8C88; }
+
+  /* ── QUESTION CARD (author's own question, emphasis) ── */
+  .question-line {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.4;
+    color: #F0EAE0;
+    text-align: center;
+    margin: 24px 0;
+    padding: 8px 0;
+  }
+
+  /* ── TENSION / SIMPLE LIST ────────────────────── */
+  .tension-list { margin: 18px 0; }
+  .tension-list ol { list-style: decimal; padding-left: 22px; }
+  .tension-list ol li {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 6px;
+    color: rgba(240,234,224,0.85);
+  }
+
+  /* ── LESSON LIST — external quotes + reflections ── */
+  .lesson-list { margin: 22px 0 4px; counter-reset: lesson; }
+  .lesson-item { margin-bottom: 22px; }
+  .lesson-quote {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 8px;
+    align-items: start;
+  }
+  .lesson-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(120,190,185,0.9);
+    padding-top: 4px;
+  }
+  .lesson-quote-text {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.55;
+    color: #F0EAE0;
+    border-left: 3px solid #3D8C88;
+    padding: 2px 0 2px 16px;
+  }
+  .lesson-reflection {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(240,234,224,0.62);
+    margin: 10px 0 0 38px;
+    padding-left: 14px;
+    border-left: 1px solid rgba(240,234,224,0.18);
+  }
+
+  /* ── SECTION DIVIDER ──────────────────────────── */
+  .section-divider { height: 1px; background: rgba(255,255,255,0.06); }
+
+  /* ── MAKING & MADE — bold staggered split panels ── */
+  .makes-intro {
+    background: var(--night);
+    padding: 52px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .makes-intro .section-label { color: var(--ochre); opacity: 0.9; }
+  .makes-intro .section-title { color: var(--paper); }
+  .makes-intro .section-watermark { color: rgba(212,87,10,0.35); }
+
+  .make {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    min-height: 460px;
+  }
+  .make-img { overflow: hidden; display: flex; }
+  .make-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+  }
+  .make-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 44px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .make-bignum {
+    position: absolute;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 12rem;
+    line-height: 1;
+    top: -30px;
+    right: -8px;
+    opacity: 0.10;
+    color: #fff;
+    pointer-events: none;
+    user-select: none;
+  }
+  .make-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .make-body {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.35;
+    letter-spacing: -0.3px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Card colour themes */
+  .make-teal .make-text     { background: var(--teal); }
+  .make-teal .make-kicker   { color: rgba(240,234,224,0.55); }
+  .make-teal .make-body     { color: #F4EFE6; }
+
+  .make-burgundy .make-text   { background: var(--burgundy); }
+  .make-burgundy .make-kicker { color: rgba(240,234,224,0.55); }
+  .make-burgundy .make-body   { color: #F4EFE6; }
+
+  .make-rust .make-text     { background: var(--rust); }
+  .make-rust .make-kicker   { color: rgba(30,20,15,0.55); }
+  .make-rust .make-body     { color: #F7F1E8; }
+
+  /* Painting sits lower in frame — bias crop down to hold both faces */
+  .make-rust .make-img img { object-position: center 62%; }
+
+  /* Stagger: even makes flip image to the right */
+  .make.flip .make-img  { order: 2; }
+  .make.flip .make-text { order: 1; }
+
+  /* ── CLOSING ──────────────────────────────────── */
+  .closing {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-watermark {
+    font-family: serif;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    user-select: none;
+    pointer-events: none;
+    color: rgba(240,234,224,1);
+    opacity: 0.2;
+    flex-shrink: 0;
+    padding-bottom: 3px;
+  }
+  .closing-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    margin-bottom: 16px;
+    opacity: 0.85;
+  }
+  .closing-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: var(--paper);
+    margin-bottom: 28px;
+  }
+  .closing-body p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(240,234,224,0.8);
+    margin-bottom: 16px;
+  }
+  .closing-body p:last-child { margin-bottom: 0; }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  .footer {
+    background: var(--night);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(240,234,224,0.3);
+    letter-spacing: 0.1em;
+  }
+  .footer-tamil { font-size: 16px; color: rgba(240,234,224,0.15); font-family: serif; }
+
+  .botanical-corner { position: absolute; opacity: 0.1; pointer-events: none; user-select: none; }
+
+  @media (max-width: 600px) {
+    .masthead { padding: 40px 24px 36px; }
+    .masthead-bignum { font-size: 160px; }
+    .masthead-title { font-size: 38px; }
+    .masthead-bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .masthead-meta { max-width: 100%; }
+    .opening { padding: 36px 24px 4px; }
+    .section { padding: 36px 24px 40px; }
+    .makes-intro { padding: 40px 24px 32px; }
+    .make { grid-template-columns: 1fr; min-height: 0; }
+    .make-img { min-height: 340px; }
+    .make.flip .make-img { order: 0; }
+    .make.flip .make-text { order: 0; }
+    .make-text { padding: 32px 24px; }
+    .closing { padding: 40px 24px; }
+    .footer { padding: 20px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ MASTHEAD ══════════════════════════════════ -->
+  <div class="masthead">
+    <div class="masthead-bignum">12</div>
+
+    <svg class="masthead-botanical" width="180" height="140" viewBox="0 0 180 140" fill="none">
+      <circle cx="90" cy="70" r="38" stroke="#D4570A" stroke-width="1.2"/>
+      <path d="M90 32 C90 32 78 50 78 70 C78 90 90 108 90 108" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M90 32 C90 32 102 50 102 70 C102 90 90 108 90 108" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M52 70 C52 70 70 58 90 58 C110 58 128 70 128 70" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M52 70 C52 70 70 82 90 82 C110 82 128 70 128 70" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M30 10 Q50 30 40 60" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 60 Q30 45 20 50" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 60 Q45 42 55 40" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <circle cx="90" cy="70" r="4" fill="#D4570A" opacity="0.4"/>
+    </svg>
+
+    <div class="masthead-eyebrow">Still Making | Weekly 12</div>
+    <div class="masthead-title">Hard Graft</div>
+    <div class="masthead-bottom">
+      <div class="masthead-meta">
+        Week of <span>June 29</span><br>
+        Mood · <span>Curious</span><br>
+        Phase · <span>Strawberry Moon, Ovulatory - Energy levels were high. I was both doing a lot and reflecting a lot.</span>
+      </div>
+      <div class="masthead-tamil">வார இதழ்</div>
+    </div>
+    <div class="masthead-bar"></div>
+  </div>
+  <div class="torn-bottom"></div>
+
+  <!-- ══ OPENING — THE ROAD SO FAR ═════════════════ -->
+  <div class="opening">
+    <svg class="botanical-corner" style="bottom:6px;right:24px;width:110px;height:90px;" viewBox="0 0 110 90" fill="none">
+      <path d="M100 80 Q70 50 40 40 Q20 32 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 40 Q45 60 55 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M40 40 Q28 52 22 62" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+
+    <span class="section-label">The road so far</span>
+    <div class="section-title-row">
+      <div class="section-title">The road so far</div>
+      <span class="section-watermark" style="color:rgba(176,80,42,0.3)">பயணம்</span>
+    </div>
+
+    <div class="section-body">
+      <p>The June full moon or the Strawberry moon is apparently a good time to celebrate how far you've come. I am proud to have stuck with these Weeklies for the past 3 months. Like a temperamental old grandfather clock, it's not always been on time. But it's full of character and chimes somewhat regularly. So well done overall.</p>
+      <p>One of the questions at the beginning of this exploration was</p>
+      <div class="lede-italic">what does my authentic voice sound like?</div>
+      <p>More than any of my other writing (other than private journals of course), I've written what I've felt. Checked impulses to feel like I need to be more knowledgeable before writing about something. Shushed the voices that said 'Does anyone really need to hear this?'</p>
+      <p>I'm starting to hear what I sound like. And I like it.</p>
+    </div>
+  </div>
+
+  <!-- ══ MAKING OURSELVES ══════════════════════════ -->
+  <div class="section section-rust">
+    <svg class="botanical-corner" style="bottom:16px;right:20px;width:110px;height:90px;" viewBox="0 0 110 90" fill="none">
+      <path d="M100 80 Q70 50 40 40 Q20 32 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 40 Q45 60 55 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M40 40 Q28 52 22 62" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+
+    <div class="section-title-row">
+      <div class="section-title">Making ourselves</div>
+      <span class="section-watermark">படைப்பு</span>
+    </div>
+
+    <div class="section-body">
+      <p>Everything we make, holds a mirror up to us. By this I don't mean that the mirror reflects our ego or vanity. It might do. But that's not all it does.</p>
+      <p>What we make, tells us what we care about, what we're driven to learn and what lights us up from the inside</p>
+      <p>It shows us the truth about ourselves.</p>
+      <p>The more we make, the more we reveal of our true selves - like Rodin's chisel freeing a statue from a block of stone. How cool is that?</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══ MAKING AS THINKING ════════════════════════ -->
+  <div class="section section-forest">
+    <svg class="botanical-corner" style="bottom:20px;left:20px;width:100px;height:80px;" viewBox="0 0 100 80" fill="none">
+      <path d="M10 70 Q30 40 60 30 Q80 22 90 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M60 30 Q55 50 45 60" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M60 30 Q70 45 75 55" stroke="#D4570A" stroke-width="1" fill="none"/>
+    </svg>
+
+    <div class="section-title-row">
+      <div class="section-title">Making as Thinking.</div>
+      <span class="section-watermark">சிந்தனை</span>
+    </div>
+
+    <div class="section-body">
+      <p>It feels core to my strategy practice - we ask questions, we make things, the making/experimenting teaches us where to point our compass next.</p>
+      <p>Deep thinking without making can feel theoretical or can give us a sense of false confidence. Because theory rarely survives real life uncertainty.</p>
+      <p>And Making without thinking can give us a sense of momentum and progress but can leave teams and organizations running around like headless chickens. Racking up a step count but not getting where they need to get to.</p>
+      <p>We need both - and as a bonus, making builds confidence in the teams that are constantly navigating uncertainty. Like driving in a fog, you can only see 2 feet ahead of you. But you can make the whole journey that way.</p>
+      <div class="emphasis-line">In making things I remake myself</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══ SHITTY FIRST DRAFTS ═══════════════════════ -->
+  <div class="section section-ochre">
+    <div class="section-title-row">
+      <div class="section-title">Shitty first drafts</div>
+      <span class="section-watermark">எழுத்து</span>
+    </div>
+
+    <div class="section-body">
+      <p>In Bird by Bird, Anne Lamott talks about the importance of shitty first drafts. How Maggie O'Farrell wrote 47 first drafts.</p>
+      <p>47 drafts? I can't seem to get from the first draft to the second. Or from a second to a third (and hopefully final). If its small fixes for clarity, that is a non issue. But when the overall structure isn't working and the narrative doesn't flow - it feels like hitting a brick wall. When I do get past the frustration and get to a next draft, it seems to be an entirely new thing.</p>
+      <p>Maybe unrecognizable next drafts are the point? Or maybe its just how my process works. A lot of writing advice is about the writing, not about the editing which is what I struggle with. When you write long form fiction or non fiction you can do the editing later - what matters is getting the story out but so far a lot of what I write are shorter articles so editing shows up fairly often in my process.</p>
+      <p>For now, here is my hypothesis about editing. Create some anchor questions to make sure the heart of what I'm trying to write about makes it to the next version. Closer to the truth. Whether it is fiction or non-fiction. Imagine a Ship of Theseus, constructed of words, how can it remain the same ship when all the words have been stripped away and replaced with new ones?</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══ LESSONS FROM GARDENERS ════════════════════ -->
+  <div class="section section-teal">
+    <svg class="botanical-corner" style="bottom:16px;right:22px;width:104px;height:84px;" viewBox="0 0 104 84" fill="none">
+      <path d="M96 74 Q66 46 38 38 Q18 30 8 8" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M38 38 Q42 58 52 66" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M38 38 Q26 50 20 60" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="8" cy="8" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+
+    <div class="section-title-row">
+      <div class="section-title">Lessons from Gardeners</div>
+      <span class="section-watermark">பாடம்</span>
+    </div>
+
+    <div class="section-body">
+      <p>I've been thinking a lot about the Architect (someone who plots and plans in advance) &lt;—→ Gardener (someone who finds the story through writing) spectrum of writers and writing. This applies beyond writing to all sorts of creative practices.</p>
+      <p>One of the art tutors I met recently, seems to be another 'Gardener' i.e. intutive maker.</p>
+      <p>Some things he said that stuck with me.</p>
+
+      <div class="lesson-list">
+        <div class="lesson-item">
+          <div class="lesson-quote">
+            <div class="lesson-num">1</div>
+            <div class="lesson-quote-text">Use the eraser - It is as much a part of the drawing process as the pencil</div>
+          </div>
+          <div class="lesson-reflection">I like this because it says mistakes are okay because they are reversible. It also says stepping back, assessing your work and being willing to erase a bit or even a lot of your work is a necessary part of the drawing process.</div>
+        </div>
+
+        <div class="lesson-item">
+          <div class="lesson-quote">
+            <div class="lesson-num">2</div>
+            <div class="lesson-quote-text">Don't worry about your drawing looking exactly like the reference - as long as it works as its own version</div>
+          </div>
+        </div>
+
+        <div class="lesson-item">
+          <div class="lesson-quote">
+            <div class="lesson-num">3</div>
+            <div class="lesson-quote-text">If you get a tone or shade wrong when painting, observe that but leave it be for now. You can always paint over it once it dries.</div>
+          </div>
+          <div class="lesson-reflection">The broader lesson here is obvious. Rushing to fix something usually creates a bigger mess.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MAKING AND MADE — bold split panels ═══════ -->
+  <div class="makes-intro">
+    <svg class="botanical-corner" style="bottom:14px;right:22px;width:120px;height:96px;opacity:0.12;" viewBox="0 0 120 96" fill="none">
+      <path d="M110 86 Q76 54 44 44 Q20 36 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M44 44 Q48 66 60 74" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M44 44 Q30 56 24 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+    <div class="section-title-row">
+      <div class="section-title">Making and Made</div>
+      <span class="section-watermark">கைவினை</span>
+    </div>
+  </div>
+
+  <!-- Make 1 — image left, text right -->
+  <div class="make make-teal">
+    <div class="make-img">
+      <img src="img-00.jpg" alt="Off the shoulder top made by Sesh, worn on a London street">
+    </div>
+    <div class="make-text">
+      <div class="make-bignum">01</div>
+      <div class="make-kicker">Made</div>
+      <div class="make-body">Made this top - Easy pattern. 6-8 hour sewing time. I was over enthusiastic in widening the neckline but it's still wearable as an off the shoulder top.</div>
+    </div>
+  </div>
+
+  <!-- Make 2 — text left, image right -->
+  <div class="make make-burgundy flip">
+    <div class="make-img">
+      <img src="img-01.jpg" alt="Sleeveless high-neck top with sixteen covered buttons and loops">
+    </div>
+    <div class="make-text">
+      <div class="make-bignum">02</div>
+      <div class="make-kicker">Made</div>
+      <div class="make-body">And this top a long make. But ultimately easier than I thought it would be. The 16 buttons and loops are easy enough - just time consuming.</div>
+    </div>
+  </div>
+
+  <!-- Make 3 — image left, text right -->
+  <div class="make make-rust">
+    <div class="make-img">
+      <img src="img-02.jpg" alt="Tonal study of two faces in acrylic paint, held up on the street">
+    </div>
+    <div class="make-text">
+      <div class="make-bignum">03</div>
+      <div class="make-kicker">Making</div>
+      <div class="make-body">Making this tonal study with acrylic paint.</div>
+    </div>
+  </div>
+
+  <!-- ══ CLOSING ════════════════════════════════════ -->
+  <div class="closing">
+    <div class="closing-label">This week / Next week</div>
+    <div class="section-title-row">
+      <div class="closing-title">This Week/ Next Week</div>
+      <span class="closing-watermark">சுவர்</span>
+    </div>
+
+    <div class="closing-body">
+      <p>Next week is busy but I already have plenty written so its a matter of polishing and getting it out. I am trying to stick to my art and workout practice despite more travel and socializing.</p>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-text">still making · week of june 29 2026</div>
+    <div class="footer-tamil">படைப்பு</div>
+  </div>
+
+</div>
+</body>
+</html>
