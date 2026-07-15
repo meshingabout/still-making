@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Still Making · the wall</title>
+<meta name="description" content="A weekly creative check-in. Makes, misfires and small repairs, published every week.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* Baiga — SIL OFL 1.1, Typecraft Initiative. Display accent only. */
+@font-face{
+  font-family:'Baiga';
+  src:url('fonts/Baiga-Regular.woff') format('woff'),
+      url('fonts/Baiga-Regular.otf') format('opentype');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+:root{
+  --paper:#F0EAE0; --aged:#DDD4C4; --ink:#221E18; --night:#1A1612; --dust:#907E72;
+  --rust:#B0502A; --ochre:#C09030; --sage:#6A7D60; --mauve:#806070; --orange:#D4570A;
+  --burgundy:#7A1F2E; --teal:#1F5A58;
+  /* deepened tile tones (bright accents brought into the deep register) */
+  --tile-ochre:#8A6417; --tile-sage:#55684C; --tile-orange:#B24A08;
+  --tile-text:#F4EEE2;
+  --spotlight:var(--rust);   /* the featured banner colour */
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Lora',Georgia,serif;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:900px;margin:0 auto;padding:56px 40px 70px;}
+
+/* masthead */
+.eyebrow{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--rust);margin:0;}
+.wordmark{font-family:'Baiga','Syne',sans-serif;font-size:80px;line-height:.9;
+  letter-spacing:.01em;margin:16px 0 0;font-weight:400;}
+.wordmark .o{color:var(--orange);}
+.lede{font-style:italic;font-size:18px;line-height:1.55;max-width:600px;
+  margin:20px 0 8px;color:#4a4237;}
+.tamil{font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.1em;
+  color:var(--dust);margin:0 0 36px;}
+
+/* featured banner */
+.feat{display:block;position:relative;background:var(--spotlight);color:var(--tile-text);
+  border-radius:10px;padding:36px 40px;overflow:hidden;margin-bottom:26px;min-height:150px;
+  transition:transform .18s ease, box-shadow .18s ease;}
+.feat-num{position:absolute;right:24px;top:-30px;font-family:'Baiga','Syne',sans-serif;
+  font-size:190px;line-height:1;opacity:.15;pointer-events:none;}
+.feat-body{position:relative;}
+.feat-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.28em;
+  text-transform:uppercase;color:rgba(244,238,226,.82);}
+.feat-title{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-.02em;
+  font-size:52px;line-height:1;margin:14px 0 0;}
+
+.arch{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--dust);margin:6px 0 16px;}
+
+/* grid — stays 2-up on mobile (no stacking) */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.tile{position:relative;border-radius:9px;padding:24px;min-height:176px;overflow:hidden;
+  display:block;color:var(--tile-text);
+  transition:transform .18s ease, box-shadow .18s ease;}
+.tile-num{position:absolute;right:8px;top:-8px;font-family:'Baiga','Syne',sans-serif;
+  font-size:92px;line-height:1;opacity:.16;transform:rotate(var(--tilt,0deg));
+  pointer-events:none;}
+.tile-title{position:absolute;left:24px;right:24px;bottom:24px;display:block;
+  font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-.02em;
+  font-size:27px;line-height:1.03;}
+.tile--rust{background:var(--rust);}
+.tile--ochre{background:var(--tile-ochre);}
+.tile--sage{background:var(--tile-sage);}
+.tile--mauve{background:var(--mauve);}
+.tile--teal{background:var(--teal);}
+.tile--burgundy{background:var(--burgundy);}
+.tile--orange{background:var(--tile-orange);}
+
+.feat:hover,.tile:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(34,30,24,.16);}
+.feat:focus-visible,.tile:focus-visible{outline:3px solid var(--night);outline-offset:3px;}
+
+.foot{margin-top:34px;font-family:'DM Mono',monospace;font-size:12px;
+  letter-spacing:.06em;color:var(--dust);}
+.note{font-family:'DM Mono',monospace;font-size:13px;color:var(--rust);
+  border:1px solid var(--aged);border-radius:8px;padding:16px;line-height:1.5;}
+
+@media (max-width:600px){
+  .wrap{padding:40px 20px 54px;}
+  .wordmark{font-size:56px;}
+  .lede{font-size:16px;}
+  .feat{padding:26px 24px;min-height:120px;}
+  .feat-title{font-size:34px;}
+  .feat-num{font-size:130px;top:-22px;right:12px;}
+  .grid{gap:12px;}
+  .tile{padding:18px;min-height:140px;}
+  .tile-title{font-size:21px;left:18px;right:18px;bottom:18px;}
+  .tile-num{font-size:70px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .feat,.tile{transition:none;}
+  .feat:hover,.tile:hover{transform:none;}
+}
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="eyebrow">the wall · weekly check-in · still making</p>
+    <h1 class="wordmark">Still Making<span class="o">.</span></h1>
+    <p class="lede">A weekly check-in from the wall — makes, misfires and small repairs, published every week whether it&rsquo;s ready or not. Consistency over polish. Still making.</p>
+    <p class="tamil">வார இதழ்</p>
+
+    <!-- Featured + archive are built from editions.csv on load. -->
+    <div id="featured"></div>
+    <p class="arch">the archive</p>
+    <nav class="grid" id="grid"></nav>
+    <noscript><p class="note">This page builds its list from editions.csv with a little JavaScript. Enable JavaScript to see the editions, or open the CSV directly.</p></noscript>
+
+    <p class="foot"><span id="count">…</span> · meshingabout.github.io/still-making</p>
+  </main>
+
+<script>
+/* ---- Still Making homepage: builds tiles from editions.csv ----
+   editions.csv columns: number,title,folder  (row 1 = the spotlighted latest
+   edition). Tile colour is chosen automatically from the number. To publish a
+   new edition, add one row at the top and commit. No need to touch this file. */
+(function(){
+  var TILTS=[-3,2,-2,3,-3,2,-2,3,-3,2];
+  /* Tile colour is derived from the edition number, so it never needs choosing
+     and stays the same for a given edition forever. To re-tune the look, just
+     reorder this palette. */
+  var PALETTE=['rust','ochre','sage','mauve','teal','burgundy','orange'];
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(m){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});}
+
+  function parseCSV(text){
+    text=text.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+    var rows=[],row=[],field='',inQ=false,i=0,c;
+    while(i<text.length){
+      c=text[i];
+      if(inQ){
+        if(c==='"'){ if(text[i+1]==='"'){field+='"';i+=2;continue;} inQ=false;i++;continue; }
+        field+=c;i++;continue;
+      }
+      if(c==='"'){inQ=true;i++;continue;}
+      if(c===','){row.push(field);field='';i++;continue;}
+      if(c==='\n'){row.push(field);rows.push(row);row=[];field='';i++;continue;}
+      field+=c;i++;
+    }
+    if(field.length||row.length){row.push(field);rows.push(row);}
+    return rows;
+  }
+
+  function toObjects(rows){
+    if(!rows.length) return [];
+    var head=rows[0].map(function(h){return h.trim().toLowerCase();});
+    var out=[];
+    for(var r=1;r<rows.length;r++){
+      var cells=rows[r];
+      if(cells.length===1 && cells[0].trim()==='') continue; // skip blank line
+      var o={};
+      for(var k=0;k<head.length;k++) o[head[k]]=(cells[k]||'').trim();
+      if(!o.title && !o.number) continue;
+      out.push(o);
+    }
+    return out;
+  }
+
+  function colorFor(number){
+    var m=String(number==null?'':number).match(/\d+/);
+    var idx;
+    if(m){ idx=parseInt(m[0],10); }
+    else { idx=0; var s=String(number||''); for(var j=0;j<s.length;j++) idx+=s.charCodeAt(j); }
+    return PALETTE[((idx%PALETTE.length)+PALETTE.length)%PALETTE.length];
+  }
+
+  function render(items){
+    var feat=document.getElementById('featured');
+    var grid=document.getElementById('grid');
+    var count=document.getElementById('count');
+    if(!items.length){ grid.innerHTML='<p class="note">No editions found in editions.csv yet.</p>'; count.textContent='0 editions'; return; }
+
+    var top=items[0];
+    feat.innerHTML=
+      '<a class="feat" href="'+esc(top.folder)+'/">'+
+        '<div class="feat-num">'+esc(top.number)+'</div>'+
+        '<div class="feat-body">'+
+          '<span class="feat-tag">latest issue</span>'+
+          '<h2 class="feat-title">'+esc(top.title)+'</h2>'+
+        '</div>'+
+      '</a>';
+
+    var html='';
+    for(var i=1;i<items.length;i++){
+      var it=items[i], tilt=TILTS[(i-1)%TILTS.length];
+      html+=
+        '<a class="tile tile--'+colorFor(it.number)+'" href="'+esc(it.folder)+'/">'+
+          '<span class="tile-num" style="--tilt:'+tilt+'deg">'+esc(it.number)+'</span>'+
+          '<span class="tile-title">'+esc(it.title)+'</span>'+
+        '</a>';
+    }
+    grid.innerHTML=html;
+    count.textContent=items.length+(items.length===1?' edition':' editions');
+  }
+
+  fetch('editions.csv',{cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function(t){ render(toObjects(parseCSV(t))); })
+    .catch(function(e){
+      document.getElementById('grid').innerHTML=
+        '<p class="note">Couldn\'t load editions.csv ('+esc(e.message)+'). On GitHub Pages this loads automatically; if you\'re previewing locally, run a small web server so the browser can read the CSV.</p>';
+      document.getElementById('count').textContent='';
+    });
+})();
+</script>
+</body>
+</html>
