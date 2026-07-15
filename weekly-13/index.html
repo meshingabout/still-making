@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Making · Weekly 13 · Emotional Gymnastics</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #F0EAE0;
+    --aged:     #DDD4C4;
+    --ink:      #221E18;
+    --night:    #1A1612;
+    --dust:     #907E72;
+    --rust:     #B0502A;
+    --ochre:    #C09030;
+    --sage:     #6A7D60;
+    --mauve:    #806070;
+    --orange:   #D4570A;
+    --burgundy: #7A1F2E;
+    --teal:     #1F5A58;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #2C2620;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 750px;
+    margin: 0 auto;
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  /* ── MASTHEAD ─────────────────────────────────── */
+  .masthead {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-bignum {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(150px, 42vw, 320px);
+    line-height: 1;
+    color: rgba(255,255,255,0.10);
+    position: absolute;
+    top: -40px;
+    right: -30px;
+    letter-spacing: -12px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dust);
+    margin-bottom: 28px;
+  }
+
+  .masthead-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 8.4vw, 60px);
+    line-height: 1.04;
+    color: var(--paper);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -1px;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  .masthead-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+    gap: 20px;
+  }
+
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(240,234,224,0.65);
+    line-height: 1.8;
+    max-width: 74%;
+  }
+
+  .masthead-meta span { color: rgba(240,234,224,0.9); }
+
+  .masthead-tamil {
+    font-size: 22px;
+    color: rgba(240,234,224,0.2);
+    letter-spacing: 0.05em;
+    font-family: serif;
+    white-space: nowrap;
+  }
+
+  .masthead-bar {
+    height: 3px;
+    background: var(--orange);
+    margin-top: 32px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .masthead-botanical {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* ── TORN PAPER EDGE ──────────────────────────── */
+  .torn-bottom {
+    height: 28px;
+    background: var(--night);
+    position: relative;
+    overflow: hidden;
+  }
+  .torn-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -2%; right: -2%;
+    height: 30px;
+    background: var(--paper);
+    clip-path: polygon(
+      0% 100%, 3% 30%, 6% 80%, 10% 20%, 14% 65%, 18% 10%,
+      22% 55%, 26% 15%, 30% 70%, 34% 25%, 38% 75%, 42% 20%,
+      46% 60%, 50% 5%, 54% 55%, 58% 20%, 62% 70%, 66% 30%,
+      70% 75%, 74% 15%, 78% 60%, 82% 25%, 86% 70%, 90% 20%,
+      94% 65%, 97% 35%, 100% 80%, 100% 100%
+    );
+  }
+
+  /* ── OPENING (cream) ──────────────────────────── */
+  .opening {
+    padding: 48px 48px 52px;
+    position: relative;
+  }
+  .opening .section-label { color: var(--rust); }
+  .opening .section-title { color: var(--ink); }
+  .opening .section-body p { color: var(--ink); }
+  .opening .section-watermark { color: rgba(176,80,42,0.28); }
+
+  .lede-italic {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--rust);
+    margin: 6px 0 18px;
+  }
+
+  /* ── SECTIONS ─────────────────────────────────── */
+  .section {
+    padding: 48px 48px 52px;
+    position: relative;
+  }
+
+  /* Title + watermark row — wraps and scales on narrow screens */
+  .section-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 24px;
+  }
+
+  .section-title-row .section-title,
+  .section-title-row .closing-title {
+    margin-bottom: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .section-watermark {
+    font-family: serif;
+    font-size: clamp(17px, 4.4vw, 30px);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.45;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding-bottom: 3px;
+    text-align: right;
+    overflow-wrap: break-word;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 6.6vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.4px;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  .section-body p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .section-body p:last-child { margin-bottom: 0; }
+
+  .section-body em { font-style: italic; }
+
+  /* ── SECTION ACCENTS ──────────────────────────── */
+  .section-rust   { background: #3D1E12; color: rgba(240,234,224,0.88); }
+  .section-rust .section-watermark { color: rgba(176,80,42,0.4); }
+  .section-rust .section-label     { color: rgba(212,87,10,0.75); }
+  .section-rust .section-title     { color: #F0EAE0; }
+  .section-rust .section-body p    { color: rgba(240,234,224,0.85); }
+
+  .section-ochre  { background: #2A1E04; color: rgba(240,234,224,0.92); }
+  .section-ochre .section-watermark { color: rgba(192,144,48,0.4); }
+  .section-ochre .section-label     { color: rgba(192,144,48,0.8); }
+  .section-ochre .section-title     { color: #F0EAE0; }
+  .section-ochre .section-body p    { color: rgba(240,234,224,0.9); }
+
+  .section-forest { background: #0D2B1F; color: rgba(240,234,224,0.9); }
+  .section-forest .section-watermark { color: rgba(106,125,96,0.5); }
+  .section-forest .section-label     { color: rgba(140,168,128,0.85); }
+  .section-forest .section-title     { color: #F0EAE0; }
+  .section-forest .section-body p    { color: rgba(240,234,224,0.88); }
+
+  /* ── SECTION DIVIDER ──────────────────────────── */
+  .section-divider { height: 1px; background: rgba(255,255,255,0.06); }
+
+  /* ── DRAWING PLATE (process work — never cropped) ── */
+  .plate {
+    background: #111;
+    border-radius: 2px;
+    margin: 22px 0;
+    padding: 12px;
+  }
+  .plate img {
+    width: 100%;
+    height: auto;
+    max-height: 620px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+  .plate-caption {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dust);
+    margin-top: 10px;
+  }
+
+  /* ── WHAT I'M READING — bold staggered split panels ── */
+  .reads-intro {
+    background: var(--night);
+    padding: 52px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .reads-intro .section-label { color: var(--ochre); opacity: 0.9; }
+  .reads-intro .section-title { color: var(--paper); }
+  .reads-intro .section-watermark { color: rgba(212,87,10,0.35); }
+
+  .read {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  .read-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(18px, 4.5vw, 40px) clamp(12px, 4vw, 32px);
+    overflow: hidden;
+  }
+  .read-img img {
+    width: 100%;
+    height: auto;
+    max-height: 460px;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+  }
+  .read-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 5.5vw, 44px) clamp(14px, 5vw, 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  .read-bignum {
+    position: absolute;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 12rem;
+    line-height: 1;
+    top: -30px;
+    right: -8px;
+    opacity: 0.10;
+    color: #fff;
+    pointer-events: none;
+    user-select: none;
+  }
+  .read-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(17px, 3.6vw, 32px);
+    line-height: 1.12;
+    letter-spacing: -0.4px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+    overflow-wrap: break-word;
+  }
+  .read-body {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: clamp(11.5px, 2.1vw, 15px);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+  .read-body p { margin-bottom: 12px; }
+  .read-body p:last-child { margin-bottom: 0; }
+  .read-body strong { font-weight: 800; }
+
+  /* Card colour themes */
+  .read-teal .read-text   { background: var(--teal); }
+  .read-teal .read-img    { background: #0C2E2C; }
+  .read-teal .read-title  { color: #F4EFE6; }
+  .read-teal .read-body   { color: rgba(244,239,230,0.9); }
+
+  .read-burgundy .read-text  { background: var(--burgundy); }
+  .read-burgundy .read-img   { background: #4A0F1C; }
+  .read-burgundy .read-title { color: #F4EFE6; }
+  .read-burgundy .read-body  { color: rgba(244,239,230,0.9); }
+
+  /* Stagger: even reads flip image to the right */
+  .read.flip .read-img  { order: 2; }
+  .read.flip .read-text { order: 1; }
+
+  /* ── CLOSING ──────────────────────────────────── */
+  .closing {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-watermark {
+    font-family: serif;
+    font-size: clamp(17px, 4.4vw, 30px);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    user-select: none;
+    pointer-events: none;
+    color: rgba(240,234,224,1);
+    opacity: 0.2;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding-bottom: 3px;
+    text-align: right;
+    overflow-wrap: break-word;
+  }
+  .closing-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    margin-bottom: 16px;
+    opacity: 0.85;
+  }
+  .closing-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 5.6vw, 28px);
+    line-height: 1.12;
+    color: var(--paper);
+    overflow-wrap: break-word;
+  }
+  .closing-body p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(240,234,224,0.8);
+    margin-bottom: 16px;
+  }
+  .closing-body p:last-child { margin-bottom: 0; }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  .footer {
+    background: var(--night);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(240,234,224,0.3);
+    letter-spacing: 0.1em;
+  }
+  .footer-tamil { font-size: 16px; color: rgba(240,234,224,0.15); font-family: serif; }
+
+  .botanical-corner { position: absolute; opacity: 0.1; pointer-events: none; user-select: none; }
+
+  @media (max-width: 600px) {
+    .masthead { padding: 40px 24px 36px; }
+    .masthead-bignum { top: -18px; right: -12px; letter-spacing: -8px; }
+    .masthead-bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .masthead-meta { max-width: 100%; }
+    .opening { padding: 36px 24px 40px; }
+    .section { padding: 36px 24px 40px; }
+    .section-title-row { align-items: baseline; }
+    .reads-intro { padding: 40px 24px 32px; }
+    .read-img { padding: 18px 12px; }
+    .read-text { padding: 22px 14px; }
+    .read-bignum { font-size: 6rem; top: -14px; right: -4px; }
+    .closing { padding: 40px 24px; }
+    .footer { padding: 20px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ MASTHEAD ══════════════════════════════════ -->
+  <div class="masthead">
+    <div class="masthead-bignum">13</div>
+
+    <svg class="masthead-botanical" width="180" height="140" viewBox="0 0 180 140" fill="none">
+      <circle cx="90" cy="70" r="38" stroke="#D4570A" stroke-width="1.2"/>
+      <path d="M90 32 C90 32 78 50 78 70 C78 90 90 108 90 108" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M90 32 C90 32 102 50 102 70 C102 90 90 108 90 108" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M52 70 C52 70 70 58 90 58 C110 58 128 70 128 70" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M52 70 C52 70 70 82 90 82 C110 82 128 70 128 70" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M30 10 Q50 30 40 60" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 60 Q30 45 20 50" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 60 Q45 42 55 40" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <circle cx="90" cy="70" r="4" fill="#D4570A" opacity="0.4"/>
+    </svg>
+
+    <div class="masthead-eyebrow">Still Making | Weekly 13</div>
+    <div class="masthead-title">Emotional Gymnastics</div>
+    <div class="masthead-bottom">
+      <div class="masthead-meta">
+        Week of <span>July 13</span><br>
+        Mood · <span>Tired</span><br>
+        Phase · <span>Luteal week from hell. New moon - new possibilities. Setting intentions.</span>
+      </div>
+      <div class="masthead-tamil">வார இதழ்</div>
+    </div>
+    <div class="masthead-bar"></div>
+  </div>
+  <div class="torn-bottom"></div>
+
+  <!-- ══ OPENING — THE NEXT 12 WEEKS ═══════════════ -->
+  <div class="opening">
+    <svg class="botanical-corner" style="bottom:10px;right:24px;width:110px;height:90px;" viewBox="0 0 110 90" fill="none">
+      <path d="M100 80 Q70 50 40 40 Q20 32 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 40 Q45 60 55 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M40 40 Q28 52 22 62" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+
+    <span class="section-label">The next 12 weeks</span>
+    <div class="section-title-row">
+      <div class="section-title">The next 12 weeks</div>
+      <span class="section-watermark" style="color:rgba(176,80,42,0.3)">அடுத்த அத்தியாயம்</span>
+    </div>
+
+    <div class="section-body">
+      <p>We are officially past the 12 week mark of writing these - can you believe it?</p>
+      <p>I am wondering what the next 12 weeks could look like. I had originally planned to do a bit more video content, so that could be something to explore. I noticed that I have unconsciously stopped including photos of my face in the last few weeklies. The hiding instinct is strong - but noticing means I can shift it.</p>
+      <p>Another thing to explore - organize some of the content in these weeklies in a way that I can share more broadly - whether that's a digital garden or something else.</p>
+      <p>The next 12 weeks will also include a transition back to working full time. Feels even more important to have a way to reflect on how my creative practice evolves when my schedule isn't fully in my control.</p>
+      <p>Speaking of back to work - the imminent return to work has got me feeling extra reflective about the past few months of recovery and creative practice. I'm torn between enjoying the last few days without worrying about the return to work, and dipping my toe in with work-related writing or a session with my coach. More on this next week.</p>
+    </div>
+  </div>
+
+  <!-- ══ WHICH NOW? ════════════════════════════════ -->
+  <div class="section section-forest">
+    <svg class="botanical-corner" style="bottom:20px;left:20px;width:100px;height:80px;" viewBox="0 0 100 80" fill="none">
+      <path d="M10 70 Q30 40 60 30 Q80 22 90 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M60 30 Q55 50 45 60" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M60 30 Q70 45 75 55" stroke="#D4570A" stroke-width="1" fill="none"/>
+    </svg>
+
+    <div class="section-title-row">
+      <div class="section-title">Which now?</div>
+      <span class="section-watermark">இப்பொழுது எப்பொழுது</span>
+    </div>
+
+    <div class="section-body">
+      <p>I spend a lot of time running away from the now.</p>
+      <p>In Bird by Bird, a very interesting book on writing by Anne Lamott who talks about inhabiting the now-now rather than the last now or the next now.</p>
+      <p>I spend a lot of time in the next now. The pull of imagined futures, where I will do great and wonderful things, is usually pretty strong.</p>
+      <p>The abandoned tasks of the now-now lie all around me like anxiety-inducing Lego blocks. Each a piece that could have been useful and even fun - but is now a near-lethal stepping hazard. No matter - I am very practiced at stepping around them. So no lessons will be learned.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══ EMOTIONAL GYMNASTICS ══════════════════════ -->
+  <div class="section section-rust">
+    <svg class="botanical-corner" style="bottom:16px;right:20px;width:110px;height:90px;" viewBox="0 0 110 90" fill="none">
+      <path d="M100 80 Q70 50 40 40 Q20 32 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 40 Q45 60 55 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M40 40 Q28 52 22 62" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+
+    <div class="section-title-row">
+      <div class="section-title">Emotional Gymnastics</div>
+      <span class="section-watermark">பல்டி அடிக்கிறது</span>
+    </div>
+
+    <div class="section-body">
+      <p>I've noticed something about my drawing practice. My subconscious brain is very quick to dismiss my progress - and it finds VERY creative ways to do this.</p>
+      <p>I did these upside down drawing exercises (the source image you are drawing is turned upside down)</p>
+
+      <div class="plate">
+        <img src="img-02.jpg" alt="Upside-down drawing exercise: the reference horse in the book beside Sesh's pencil copy">
+      </div>
+      <div class="plate">
+        <img src="img-03.jpg" alt="Upside-down drawing exercise: a seated man in a jacket, drawn after Picasso">
+      </div>
+
+      <p>They turned out really well which is the point the instructor is making about how drawing well is something anyone can do if we let our loud, verbal left-brain fade away so that the creative and intuitive right brain can take over to do the drawing.</p>
+      <p>I was recently showing my latest drawings to a friend, but I didn't somehow feel I could claim these upside down drawings as <em>my</em> <em>drawings</em> - my brain seems to think I've cheated somehow. We did trick the left brain but that doesn't make the drawing any less valid. But even as I type this, presumably with the help of the verbal, analytical left brain, I don't really believe that.</p>
+      <p>I realize my brain (and likely yours) does this whenever we have just done a hard thing. It finds a story to tell.</p>
+
+      <p>‘Beginners luck’</p>
+      <p>‘Happy accident’</p>
+      <p>‘Just a fluke -I’ll never be able to do that again’</p>
+      <p>‘ Maybe it wasn’t a hard thing to do in the first place’</p>
+      <p>‘ I’m sure loads of people can do this’</p>
+
+      <p>How many times have we said things like this to ourselves until the excited little kid waving celebratory pom-poms just deflated and trudged away with her shoulders slumped?</p>
+      <p>Maybe we need to train our brains to do the opposite for a while.</p>
+      <p>Breakout the celebratory pom-poms for everything.</p>
+
+      <p>Made a great omelette? Pom-poms.</p>
+      <p>Took a shower when you had a migraine? Pom-poms.</p>
+      <p>You drew something - put your focus, time and care into it? A whole Mexican wave of pom-poms.</p>
+
+      <p>Being alive and being able to make beautiful things is enough reason to celebrate - isn't it? Even more true when pain and illness sap our energy and our sense of who we are. Something I am feeling a lot at the moment after 6 straight days of migraines.</p>
+      <p>These pom-poms might sound like those participation trophies we scoffed at as kids.</p>
+      <p>But the more I grow up, I realize that talent is overrated and trying is underrated.</p>
+      <p>Trying over and over is the hard part. You build the talent along the way - bit by bit.</p>
+      <p>So we show up and try. Because the pom poms are waiting.</p>
+    </div>
+  </div>
+
+  <!-- ══ WHAT I'M READING — bold split panels ══════ -->
+  <div class="reads-intro">
+    <svg class="botanical-corner" style="bottom:14px;right:22px;width:120px;height:96px;opacity:0.12;" viewBox="0 0 120 96" fill="none">
+      <path d="M110 86 Q76 54 44 44 Q20 36 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M44 44 Q48 66 60 74" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M44 44 Q30 56 24 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+    <div class="section-title-row">
+      <div class="section-title">What I'm reading</div>
+      <span class="section-watermark">படிக்கிறேன்</span>
+    </div>
+  </div>
+
+  <!-- Read 1 — image left, text right -->
+  <div class="read read-teal">
+    <div class="read-img">
+      <img src="img-00.jpg" alt="Cover of The Tainted Cup by Robert Jackson Bennett">
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">01</div>
+      <div class="read-title">The Tainted Cup</div>
+      <div class="read-body">
+        <p>a strange, genre-bending murder mystery set in an overgrown 'biopunk' world where people, lands and animals are modified with grafts to give them abilities to survive the harsh realities of that world. There is always a looming threat of creatures from the sea breaching the walls - Leviathans! And of course - a Holmes and Watson style investigating duo. I prefer an Agatha Christie mystery to a Conan Doyle, but the lead investigator Ana isn't going full Sherlock Holmes (knowing 47 different types of cigarette ash etc.) and the setting is so compelling that I was happy to be along for the ride.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Read 2 — text left, image right -->
+  <div class="read read-burgundy flip">
+    <div class="read-img">
+      <img src="img-01.jpg" alt="Cover of Katabasis by R.F. Kuang">
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">02</div>
+      <div class="read-title">Katabasis</div>
+      <div class="read-body">
+        <p>RF Kuang doesn't write bad books but I don't know if this one fully worked. I loved a lot of it and maybe its the type of book that benefits from a second read. I read this over many months - and my enjoyment of it varied at different points. I couldn't get over the stupidity of the central premise - 2 PhD students compelled to go to hell, search the 9 circles, to get their dead advisor back. Of course this isn't just about the PhD - but we get a lot of the book from Alice's very flawed perspective and I really struggle to relate to books where the protagonist is very smart but is being extremely blind and bull-headed about something. I struggled with Blood Over Bright Haven for the same reason. And before you say it, I am very aware that this probably says a lot more about me than it says about the book.</p>
+        <p>Having said all that - I really enjoyed the logic puzzles, the way Kuang brings diverse myths about Hell together to create a very singular landscape, and of course (mild spoiler warning) - the <strong>Peter chapter.</strong> This bit hit me like a gut punch. For me, this book is worth it just to have read that chapter and what happens after. More on this with more spoilers later.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CLOSING ════════════════════════════════════ -->
+  <div class="closing">
+    <div class="closing-label">This week / Next week</div>
+    <div class="section-title-row">
+      <div class="closing-title">This week / Next week</div>
+      <span class="closing-watermark">சுவர்</span>
+    </div>
+
+    <div class="closing-body">
+      <p>Ajit is away this week for 5 days. And I have about 10 days worth of projects planned. My migraines seem to have a plan of their own though. So the plan is to try and rest where I can. And carry on where I can. I plan to do 60 min of writing an extremely vibes-based article on Strategy and Futures.</p>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-text">still making · week of july 13 2026</div>
+    <div class="footer-tamil">படைப்பு</div>
+  </div>
+
+</div>
+</body>
+</html>
