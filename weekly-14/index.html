@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Making · Weekly 14 · Practice makes Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #F0EAE0;
+    --aged:     #DDD4C4;
+    --ink:      #221E18;
+    --night:    #1A1612;
+    --dust:     #907E72;
+    --rust:     #B0502A;
+    --ochre:    #C09030;
+    --sage:     #6A7D60;
+    --mauve:    #806070;
+    --orange:   #D4570A;
+    --burgundy: #7A1F2E;
+    --teal:     #1F5A58;
+    /* week 14 — single plum hue, deepening through the essay */
+    --essay-1:  #E9DCE2;   /* light  — opening */
+    --essay-2:  #533450;   /* mid    — middle */
+    --essay-3:  #2E1A2A;   /* deep   — reframe */
+    --plum:     #C98AA6;
+    --plum-deep:#7E4E72;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #2C2620;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 750px;
+    margin: 0 auto;
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  /* ── MASTHEAD ─────────────────────────────────── */
+  .masthead {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead-bignum {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(150px, 42vw, 320px);
+    line-height: 1;
+    color: rgba(255,255,255,0.10);
+    position: absolute;
+    top: -40px;
+    right: -30px;
+    letter-spacing: -12px;
+    user-select: none;
+    pointer-events: none;
+  }
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dust);
+    margin-bottom: 28px;
+  }
+  .masthead-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 8.4vw, 60px);
+    line-height: 1.04;
+    color: var(--paper);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -1px;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+  .masthead-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+    gap: 20px;
+  }
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(240,234,224,0.65);
+    line-height: 1.8;
+    max-width: 74%;
+  }
+  .masthead-meta span { color: rgba(240,234,224,0.9); }
+  .masthead-tamil {
+    font-size: 22px;
+    color: rgba(240,234,224,0.2);
+    letter-spacing: 0.05em;
+    font-family: serif;
+    white-space: nowrap;
+  }
+  .masthead-bar {
+    height: 3px;
+    background: var(--orange);
+    margin-top: 32px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .masthead-botanical {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* ── TORN PAPER EDGE ──────────────────────────── */
+  .torn-bottom {
+    height: 28px;
+    background: var(--night);
+    position: relative;
+    overflow: hidden;
+  }
+  .torn-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -2%; right: -2%;
+    height: 30px;
+    background: #34222C;
+    clip-path: polygon(
+      0% 100%, 3% 30%, 6% 80%, 10% 20%, 14% 65%, 18% 10%,
+      22% 55%, 26% 15%, 30% 70%, 34% 25%, 38% 75%, 42% 20%,
+      46% 60%, 50% 5%, 54% 55%, 58% 20%, 62% 70%, 66% 30%,
+      70% 75%, 74% 15%, 78% 60%, 82% 25%, 86% 70%, 90% 20%,
+      94% 65%, 97% 35%, 100% 80%, 100% 100%
+    );
+  }
+
+  /* ── SHARED TITLE / WATERMARK ROW ─────────────── */
+  .section-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 24px;
+  }
+  .section-title-row .section-title,
+  .section-title-row .closing-title {
+    margin-bottom: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .section-watermark {
+    font-family: serif;
+    font-size: clamp(16px, 4vw, 28px);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.45;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding-bottom: 3px;
+    text-align: right;
+    overflow-wrap: break-word;
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(25px, 6.4vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.4px;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  /* ── FLOWING ESSAY SECTIONS ───────────────────── */
+  .flow {
+    padding: 48px 48px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Tamil accent for untitled essay fields — wraps & scales safely */
+  .flow-mark {
+    font-family: serif;
+    font-size: clamp(18px, 5vw, 32px);
+    letter-spacing: 0.05em;
+    text-align: right;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    opacity: 0.42;
+    overflow-wrap: break-word;
+    user-select: none;
+    pointer-events: none;
+  }
+  .flow-body p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .flow-body p:last-child { margin-bottom: 0; }
+  .flow-body em { font-style: italic; }
+
+  /* ── ESSAY — one dark handmade-paper field, gently deepening ── */
+  .essay {
+    background: linear-gradient(180deg, #34222C 0%, #2A1824 44%, #1C1016 100%);
+    position: relative;
+  }
+  .opening, .s-mid, .s-deep { background: transparent; }
+  .opening .flow-mark { color: rgba(201,138,166,0.55); }
+  .opening .flow-body p,
+  .s-mid .flow-body p,
+  .s-deep .flow-body p { color: rgba(240,234,224,0.9); }
+  .opening-lede {
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: #F4EFE6;
+    margin-bottom: 20px !important;
+  }
+
+  /* scene-setting scan at the very top of the essay */
+  .scene-scan { margin-bottom: 26px; }
+  .scene-scan img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 430px;
+    object-fit: contain;
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 2px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.42);
+    background: #0f0b0e;
+  }
+
+  /* lead lines (her verbatim lines, larger) */
+  .flow-lead {
+    font-size: clamp(19px, 3.6vw, 25px) !important;
+    line-height: 1.4 !important;
+    color: #F4EFE6 !important;
+    font-weight: 400;
+  }
+
+  /* pulled italic emphasis (author-indicated italics) */
+  .lede-pull {
+    font-style: italic;
+    font-size: clamp(19px, 3.6vw, 24px);
+    line-height: 1.5;
+    color: #E7C1D8;
+    padding-left: 18px;
+    border-left: 2px solid var(--plum);
+    margin: 6px 0 20px;
+  }
+
+  /* stacked list (struggle) */
+  .stack-list { list-style: none; margin: 6px 0 22px; }
+  .stack-list li {
+    font-size: 16px;
+    line-height: 1.55;
+    padding: 4px 0 8px 18px;
+    border-left: 2px solid var(--plum);
+    color: rgba(240,234,224,0.9);
+    margin-bottom: 4px;
+  }
+
+  /* verse (moon stanza) */
+  .verse {
+    margin: 8px 0 22px;
+    padding-left: 20px;
+    border-left: 2px solid var(--plum);
+  }
+  .verse p {
+    font-size: clamp(17px, 3vw, 20px);
+    line-height: 1.5;
+    color: #F4EFE6;
+    margin-bottom: 4px;
+  }
+  .verse p:last-child { margin-bottom: 0; }
+
+  /* ── STANDALONE CENTERED IMAGE (finished make) ── */
+  .standalone {
+    background: var(--night);
+    padding: 40px 48px 48px;
+    text-align: center;
+  }
+  .standalone img {
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    max-height: 560px;
+    object-fit: contain;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.5);
+    border-radius: 2px;
+  }
+
+  /* ── MAKES & READS — bold staggered split panels ── */
+  .reads-intro {
+    background: var(--night);
+    padding: 52px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .reads-intro.tight { padding-top: 46px; }
+  .reads-intro .section-label { color: var(--ochre); opacity: 0.9; }
+  .reads-intro .section-title { color: var(--paper); }
+  .reads-intro .section-watermark { color: rgba(212,87,10,0.4); }
+
+  .read {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  .read-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(18px, 4.5vw, 40px) clamp(12px, 4vw, 32px);
+    overflow: hidden;
+  }
+  .read-img img {
+    width: 100%;
+    height: auto;
+    max-height: 460px;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+  }
+  .read-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 5.5vw, 44px) clamp(14px, 5vw, 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  .read-bignum {
+    position: absolute;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 12rem;
+    line-height: 1;
+    top: -30px;
+    right: -8px;
+    opacity: 0.10;
+    color: #fff;
+    pointer-events: none;
+    user-select: none;
+  }
+  .read-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(18px, 3.8vw, 32px);
+    line-height: 1.12;
+    letter-spacing: -0.4px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+    overflow-wrap: break-word;
+  }
+  .read-body {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: clamp(11.5px, 2.1vw, 15px);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+  .read-body p { margin-bottom: 12px; }
+  .read-body p:last-child { margin-bottom: 0; }
+  .read-body strong { font-weight: 800; }
+
+  /* Card colour themes (week 14) */
+  .read-plum .read-text  { background: #5A2140; }
+  .read-plum .read-img   { background: #38152A; }
+  .read-plum .read-title { color: #F4EFE6; }
+  .read-plum .read-body  { color: rgba(244,239,230,0.92); }
+
+  .read-rust .read-text  { background: #7A3417; }
+  .read-rust .read-img   { background: #40170A; }
+  .read-rust .read-title { color: #F4EFE6; }
+  .read-rust .read-body  { color: rgba(244,239,230,0.92); }
+
+  .read-teal .read-text  { background: #14514E; }
+  .read-teal .read-img   { background: #0C302E; }
+  .read-teal .read-title { color: #F4EFE6; }
+  .read-teal .read-body  { color: rgba(244,239,230,0.92); }
+
+  /* Stagger: flip image to the right */
+  .read.flip .read-img  { order: 2; }
+  .read.flip .read-text { order: 1; }
+
+  /* ── CLOSING ──────────────────────────────────── */
+  .closing {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-watermark {
+    font-family: serif;
+    font-size: clamp(16px, 4vw, 28px);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    user-select: none;
+    pointer-events: none;
+    color: rgba(240,234,224,1);
+    opacity: 0.2;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding-bottom: 3px;
+    text-align: right;
+    overflow-wrap: break-word;
+  }
+  .closing-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    margin-bottom: 16px;
+    opacity: 0.85;
+  }
+  .closing-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 5.6vw, 28px);
+    line-height: 1.12;
+    color: var(--paper);
+    overflow-wrap: break-word;
+  }
+  .closing-body p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(240,234,224,0.8);
+    margin-bottom: 16px;
+  }
+  .closing-body p:last-child { margin-bottom: 0; }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  .footer {
+    background: var(--night);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(240,234,224,0.3);
+    letter-spacing: 0.1em;
+  }
+  .footer-tamil { font-size: 16px; color: rgba(240,234,224,0.15); font-family: serif; }
+
+  .botanical-corner { position: absolute; opacity: 0.1; pointer-events: none; user-select: none; }
+
+  /* ── MOBILE — guarantee titles & watermarks never clip ── */
+  @media (max-width: 600px) {
+    .masthead { padding: 40px 24px 36px; }
+    .masthead-bignum { top: -18px; right: -12px; letter-spacing: -8px; }
+    .masthead-bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .masthead-meta { max-width: 100%; }
+    .flow { padding: 36px 24px 40px; }
+    .reads-intro { padding: 40px 24px 32px; }
+    /* stack title + Tamil so neither is squeezed */
+    .section-title-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .section-watermark, .closing-watermark { text-align: left; }
+    .read-img { padding: 18px 12px; }
+    .read-text { padding: 22px 14px; }
+    .read-bignum { font-size: 6rem; top: -14px; right: -4px; }
+    .standalone { padding: 28px 24px 32px; }
+    .standalone img { max-height: 440px; }
+    .closing { padding: 40px 24px; }
+    .footer { padding: 20px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ MASTHEAD ══════════════════════════════════ -->
+  <div class="masthead">
+    <div class="masthead-bignum">14</div>
+
+    <svg class="masthead-botanical" width="180" height="140" viewBox="0 0 180 140" fill="none">
+      <circle cx="90" cy="70" r="38" stroke="#D4570A" stroke-width="1.2"/>
+      <path d="M90 32 C90 32 78 50 78 70 C78 90 90 108 90 108" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M90 32 C90 32 102 50 102 70 C102 90 90 108 90 108" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M52 70 C52 70 70 58 90 58 C110 58 128 70 128 70" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M52 70 C52 70 70 82 90 82 C110 82 128 70 128 70" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M30 10 Q50 30 40 60" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 60 Q30 45 20 50" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 60 Q45 42 55 40" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <circle cx="90" cy="70" r="4" fill="#D4570A" opacity="0.4"/>
+    </svg>
+
+    <div class="masthead-eyebrow">Still Making | Weekly 14</div>
+    <div class="masthead-title">Practice makes Practice</div>
+    <div class="masthead-bottom">
+      <div class="masthead-meta">
+        Week of <span>July 18</span><br>
+        Mood · <span>tired</span><br>
+        Phase · <span>menstrual</span>
+      </div>
+      <div class="masthead-tamil">வார இதழ்</div>
+    </div>
+    <div class="masthead-bar"></div>
+  </div>
+  <div class="torn-bottom"></div>
+
+  <div class="essay">
+  <!-- ══ OPENING — childhood music class ═══ -->
+  <div class="flow opening">
+    <div class="scene-scan">
+      <img src="img-scene.jpg" alt="A page from a Tamil music (varnam) notebook">
+    </div>
+    <svg class="botanical-corner" style="bottom:10px;right:24px;width:110px;height:90px;" viewBox="0 0 110 90" fill="none">
+      <path d="M100 80 Q70 50 40 40 Q20 32 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 40 Q45 60 55 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M40 40 Q28 52 22 62" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+
+    <div class="flow-mark">மறுபடியும்</div>
+    <div class="flow-body">
+      <p class="opening-lede">I used to go to ‘paatu class’ i.e. music class as a child. My mum’s idea. My sister and I would trudge along to music class after school, brown paper-covered music books in hand, to where the teacher lived.</p>
+      <p>She would always begin the class with the dreadful question ‘practice paneengala’ - did you practice?</p>
+      <p>Eight times out of 10 we would look at each other sheepishly and mutter that we didn’t or that we did but only for a little while. Practicing was the most boring thing in the world for both of us. Get through mountains of schoolwork only to remember that we still had to do music practice? No thanks. We’d rush through it eager to get it over with.</p>
+      <p>‘You need to practice properly like your teacher told you. Discipline is very important’ - My mother would say, only about 5 times a day.</p>
+      <p>All I could feel was the sinking feeling that I wasn’t cut out for this business of disciplined, consistent focus. It’s just not how my brain worked. Even then I knew my energy and interest came in waves.</p>
+      <p>But of course I didn’t dare say anything to my mother or my music teacher back then.</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION A — the discipline problem (plum) ═ -->
+  <div class="flow s-mid">
+    <svg class="botanical-corner" style="bottom:16px;left:20px;width:100px;height:80px;" viewBox="0 0 100 80" fill="none">
+      <path d="M10 70 Q30 40 60 30 Q80 22 90 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M60 30 Q55 50 45 60" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M60 30 Q70 45 75 55" stroke="#D4570A" stroke-width="1" fill="none"/>
+    </svg>
+
+    <div class="flow-body">
+      <p>Fast forward 30 years. I still don’t like the words, discipline or consistency. I’m not a restless little girl, but a restless woman with a dynamic chronic illness. My interest still comes in waves and now so does my capacity. And not always together.</p>
+      <p>I have struggled a lot with the idea of consistency</p>
+      <ul class="stack-list">
+        <li>working out at the same time or the same amount each week</li>
+        <li>journaling every day</li>
+        <li>finishing the 1000 odd creative projects lurking in drawers and hard drives at any given point</li>
+      </ul>
+      <p>For a while, the atomic habits framing, helped.</p>
+      <p class="lede-pull">1% better each day. Just show up to do a thing, even if you only do a part of it</p>
+      <p>Just write 2 lines</p>
+      <p>Just go to the gym for a 5 minute walk.</p>
+      <p>Usually I would find that I would do more - writing or working out more than I planned. We have solved the problem with a combination of trickery and will power! Well done. The end.</p>
+      <p>Well not quite.</p>
+      <p>More often than not, doing more when my body is asking me to do less is only asking for trouble. I was solving one problem (staying consistent, building a habit) by creating a deeper one - I was telling my body I don’t care what you need.</p>
+      <p>What to do instead?</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION B — the practice reframe (indigo) ══ -->
+  <div class="flow s-deep">
+    <svg class="botanical-corner" style="bottom:16px;right:20px;width:110px;height:90px;" viewBox="0 0 110 90" fill="none">
+      <path d="M100 80 Q70 50 40 40 Q20 32 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 40 Q45 60 55 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M40 40 Q28 52 22 62" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+
+    <div class="flow-body">
+      <p class="flow-lead">The word practice makes a comeback.</p>
+      <p>And this time it’s different. This time it’s not a stick to beat myself with.</p>
+      <p>Removed from its childhood friends, Discipline and Consistency, Practice is a softer container.</p>
+      <p>Practice isn’t about missing a day or a week.</p>
+      <p>Practice isn’t about what I create or the quality of the outcome. It doesn’t lead to perfection - in fact it rejects the idea of perfection.</p>
+      <p class="flow-lead">Practice is just returning to something over and over.</p>
+      <p>This returning is not like the tropical sun, up and down with military precision every day of the year. But like the moon, waxing and waning.</p>
+      <div class="verse">
+        <p>Sometimes full of energy</p>
+        <p>Sometimes slow and reflective</p>
+        <p>Sometimes you don’t see it all, but you know it’s there</p>
+      </div>
+      <p>Maybe this seems pretty similar to the Atomic Habits framing. But for me it’s different in that it holds space for fluctuating capacity more intentionally. It’s not tricking myself into getting started and pushing through the pain.</p>
+      <p>It is saying, things are different today - how will your practice evolve? And from this intentional constraint comes more creativity - hopefully without the usual costs.</p>
+    </div>
+  </div>
+  </div>
+  <!-- /essay -->
+
+  <!-- ══ MAKING / MADE — bold split panels ═════════ -->
+  <div class="reads-intro">
+    <svg class="botanical-corner" style="bottom:14px;right:22px;width:120px;height:96px;opacity:0.12;" viewBox="0 0 120 96" fill="none">
+      <path d="M110 86 Q76 54 44 44 Q20 36 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M44 44 Q48 66 60 74" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M44 44 Q30 56 24 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+    <div class="section-title-row">
+      <div class="section-title">Making / Made</div>
+      <span class="section-watermark">படைப்பு</span>
+    </div>
+  </div>
+
+  <!-- Make 1 — image left, text right -->
+  <div class="read read-plum">
+    <div class="read-img">
+      <img src="img-00.jpg" alt="Green seersucker wrap top on a wooden hanger">
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">01</div>
+      <div class="read-body">
+        <p>Made this wrap top. My first time working with seersucker fabric. It expands when you iron it which confused the hell out of me about how to actually cut and sew it. I winged it rather than turn to the internet for advice and it turned out pretty well.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Make 2 — text left, process gif right -->
+  <div class="read read-rust flip">
+    <div class="read-img">
+      <img src="img-01.gif" alt="Process video of the acrylic painting being made">
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">02</div>
+      <div class="read-title">Play time with acrylics</div>
+    </div>
+  </div>
+
+  <!-- Finished painting — centered standalone -->
+  <div class="standalone">
+    <img src="img-01-final.jpg" alt="Finished acrylic painting of a figure in earthy browns on handmade paper">
+  </div>
+
+  <!-- ══ WHAT I'M READING — bold split panels ══════ -->
+  <div class="reads-intro tight">
+    <svg class="botanical-corner" style="bottom:14px;left:22px;width:120px;height:96px;opacity:0.12;" viewBox="0 0 120 96" fill="none">
+      <path d="M10 86 Q44 54 76 44 Q100 36 110 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M76 44 Q72 66 60 74" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M76 44 Q90 56 96 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="110" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+    <div class="section-title-row">
+      <div class="section-title">What I’m reading</div>
+      <span class="section-watermark">படிக்கிறேன்</span>
+    </div>
+  </div>
+
+  <!-- Read 1 — image left, text right -->
+  <div class="read read-teal">
+    <div class="read-img">
+      <img src="img-02.jpg" alt="Cover of A Drop of Corruption by Robert Jackson Bennett">
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">03</div>
+      <div class="read-title">A Drop of Corruption</div>
+      <div class="read-body">
+        <p>second book of a fantasy murder mystery set in a strange overgrown world where buildings are grown and people are altered with the venoms, serums and reagents made from giant sea creatures that are constantly trying to breach the sea walls. We see more of this fascinating world in book 2 and I’m hoping we get more answers about the sea creatures. Now that I’m less occupied in just keeping up with worldbuilding I can pay more attention to the actual clueing which is always the fun part of reading a murder mystery for me.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CLOSING ════════════════════════════════════ -->
+  <div class="closing">
+    <div class="closing-label">This week / Next week</div>
+    <div class="section-title-row">
+      <div class="closing-title">This week / Next week</div>
+      <span class="closing-watermark">சுவர்</span>
+    </div>
+    <div class="closing-body">
+      <p>I intended to write something work adjacent this week. I’ve gotten as far as one paragraph so far but getting to that paragraph was an interesting process. I wrote and deleted multiple opening lines that didn’t feel or sound like me. Or rather it sounds like the work-version of me rather than the actual me. And this whole thing is about unearthing my voice. So slow progress is maybe a good thing here.</p>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-text">still making · week of july 18 2026</div>
+    <div class="footer-tamil">படைப்பு</div>
+  </div>
+
+</div>
+</body>
+</html>
