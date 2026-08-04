@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Making · Weekly 15 · The wave</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #F0EAE0;
+    --aged:     #DDD4C4;
+    --ink:      #221E18;
+    --night:    #1A1612;
+    --dust:     #907E72;
+    --rust:     #B0502A;
+    --ochre:    #C09030;
+    --sage:     #6A7D60;
+    --mauve:    #806070;
+    --orange:   #D4570A;
+    --burgundy: #7A1F2E;
+    --teal:     #1F5A58;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #24302E;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 750px;
+    margin: 0 auto;
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  /* ── MASTHEAD ─────────────────────────────────── */
+  .masthead {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-bignum {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(150px, 42vw, 320px);
+    line-height: 1;
+    color: rgba(255,255,255,0.10);
+    position: absolute;
+    top: -40px;
+    right: -30px;
+    letter-spacing: -12px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dust);
+    margin-bottom: 28px;
+  }
+
+  .masthead-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 8.4vw, 60px);
+    line-height: 1.04;
+    color: var(--paper);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -1px;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  .masthead-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+    gap: 20px;
+  }
+
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(240,234,224,0.65);
+    line-height: 1.8;
+    max-width: 74%;
+  }
+
+  .masthead-meta span { color: rgba(240,234,224,0.9); }
+
+  .masthead-tamil {
+    font-size: 22px;
+    color: rgba(240,234,224,0.2);
+    letter-spacing: 0.05em;
+    font-family: serif;
+    white-space: nowrap;
+  }
+
+  .masthead-bar {
+    height: 3px;
+    background: var(--orange);
+    margin-top: 32px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .masthead-botanical {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* ── TORN PAPER EDGE ──────────────────────────── */
+  .torn-bottom {
+    height: 28px;
+    background: var(--night);
+    position: relative;
+    overflow: hidden;
+  }
+  .torn-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -2%; right: -2%;
+    height: 30px;
+    background: var(--paper);
+    clip-path: polygon(
+      0% 100%, 3% 30%, 6% 80%, 10% 20%, 14% 65%, 18% 10%,
+      22% 55%, 26% 15%, 30% 70%, 34% 25%, 38% 75%, 42% 20%,
+      46% 60%, 50% 5%, 54% 55%, 58% 20%, 62% 70%, 66% 30%,
+      70% 75%, 74% 15%, 78% 60%, 82% 25%, 86% 70%, 90% 20%,
+      94% 65%, 97% 35%, 100% 80%, 100% 100%
+    );
+  }
+
+  /* ── OPENING (cream) ──────────────────────────── */
+  .opening {
+    padding: 48px 48px 52px;
+    position: relative;
+  }
+  .opening-top {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+  }
+  .opening-watermark {
+    font-family: serif;
+    font-size: clamp(20px, 5vw, 34px);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    color: rgba(31,90,88,0.30);
+    user-select: none;
+    pointer-events: none;
+  }
+  .opening .section-body p { color: var(--ink); }
+
+  .lede-italic {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 5.2vw, 30px);
+    line-height: 1.35;
+    color: var(--teal);
+    margin: 2px 0 24px;
+    letter-spacing: -0.2px;
+  }
+
+  /* ── SECTIONS ─────────────────────────────────── */
+  .section {
+    padding: 48px 48px 52px;
+    position: relative;
+  }
+
+  .section-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 24px;
+  }
+  .section-title-row .section-title,
+  .section-title-row .closing-title {
+    margin-bottom: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .section-watermark {
+    font-family: serif;
+    font-size: clamp(17px, 4.4vw, 30px);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.45;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding-bottom: 3px;
+    text-align: right;
+    overflow-wrap: break-word;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 6.6vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.4px;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  .section-body p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .section-body p:last-child { margin-bottom: 0; }
+  .section-body em { font-style: italic; }
+
+  /* ── SECTION DIVIDER ──────────────────────────── */
+  .section-divider { height: 1px; background: rgba(0,0,0,0.08); }
+
+  /* ── WHAT I'M MAKING / READING — bold staggered split panels ── */
+  .reads-intro {
+    background: var(--night);
+    padding: 52px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .reads-intro .section-label { color: var(--teal); opacity: 1; }
+  .reads-intro.intro-read .section-label { color: var(--ochre); opacity: 0.9; }
+  .reads-intro .section-title { color: var(--paper); }
+  .reads-intro .section-watermark { color: rgba(31,90,88,0.55); }
+  .reads-intro.intro-read .section-watermark { color: rgba(212,87,10,0.35); }
+
+  .read {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  .read-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(18px, 4.5vw, 40px) clamp(12px, 4vw, 32px);
+    overflow: hidden;
+  }
+  .read-img img {
+    width: 100%;
+    height: auto;
+    max-height: 460px;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+  }
+  .read-img video {
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+    border-radius: 2px;
+  }
+  .sketch-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+  }
+  .sketch-stack img {
+    width: 100%;
+    height: auto;
+    max-height: 260px;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+    background: #EDE7DC;
+  }
+  .read-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 5.5vw, 44px) clamp(14px, 5vw, 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  .read-bignum {
+    position: absolute;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 12rem;
+    line-height: 1;
+    top: -30px;
+    right: -8px;
+    opacity: 0.10;
+    color: #fff;
+    pointer-events: none;
+    user-select: none;
+  }
+  .read-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(17px, 3.6vw, 30px);
+    line-height: 1.12;
+    letter-spacing: -0.4px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+    overflow-wrap: break-word;
+  }
+  .read-body {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: clamp(11.5px, 2.1vw, 15px);
+    line-height: 1.62;
+    position: relative;
+    z-index: 1;
+  }
+  .read-body p { margin-bottom: 12px; }
+  .read-body p:last-child { margin-bottom: 0; }
+  .read-body strong { font-weight: 800; }
+
+  /* Card colour themes */
+  .read-mauve .read-text   { background: #5A4250; }
+  .read-mauve .read-img    { background: #3B2B34; }
+  .read-mauve .read-title  { color: #F4EFE6; }
+  .read-mauve .read-body   { color: rgba(244,239,230,0.92); }
+
+  .read-teal .read-text    { background: var(--teal); }
+  .read-teal .read-img     { background: #0C2E2C; }
+  .read-teal .read-title   { color: #F4EFE6; }
+  .read-teal .read-body    { color: rgba(244,239,230,0.92); }
+
+  .read-burgundy .read-text  { background: var(--burgundy); }
+  .read-burgundy .read-img   { background: #4A0F1C; }
+  .read-burgundy .read-title { color: #F4EFE6; }
+  .read-burgundy .read-body  { color: rgba(244,239,230,0.9); }
+
+  /* Stagger: flipped reads put image on the right */
+  .read.flip .read-img  { order: 2; }
+  .read.flip .read-text { order: 1; }
+
+  /* ── CLOSING ──────────────────────────────────── */
+  .closing {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-watermark {
+    font-family: serif;
+    font-size: clamp(17px, 4.4vw, 30px);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    user-select: none;
+    pointer-events: none;
+    color: rgba(240,234,224,1);
+    opacity: 0.2;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding-bottom: 3px;
+    text-align: right;
+    overflow-wrap: break-word;
+  }
+  .closing-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+    opacity: 0.95;
+  }
+  .closing-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 5.6vw, 28px);
+    line-height: 1.12;
+    color: var(--paper);
+    overflow-wrap: break-word;
+  }
+  .closing-body p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(240,234,224,0.82);
+    margin-bottom: 16px;
+  }
+  .closing-body p:last-child { margin-bottom: 0; }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  .footer {
+    background: var(--night);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(240,234,224,0.3);
+    letter-spacing: 0.1em;
+  }
+  .footer-tamil { font-size: 16px; color: rgba(240,234,224,0.15); font-family: serif; }
+
+  .botanical-corner { position: absolute; opacity: 0.1; pointer-events: none; user-select: none; }
+
+  @media (max-width: 600px) {
+    .masthead { padding: 40px 24px 36px; }
+    .masthead-bignum { top: -18px; right: -12px; letter-spacing: -8px; }
+    .masthead-bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .masthead-meta { max-width: 100%; }
+    .opening { padding: 36px 24px 40px; }
+    .section { padding: 36px 24px 40px; }
+    .section-title-row { align-items: baseline; }
+    .reads-intro { padding: 40px 24px 32px; }
+    .read-img { padding: 18px 12px; }
+    .read-text { padding: 22px 14px; }
+    .read-bignum { font-size: 6rem; top: -14px; right: -4px; }
+    .sketch-stack img { max-height: 200px; }
+    .closing { padding: 40px 24px; }
+    .footer { padding: 20px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ MASTHEAD ══════════════════════════════════ -->
+  <div class="masthead">
+    <div class="masthead-bignum">15</div>
+
+    <svg class="masthead-botanical" width="180" height="140" viewBox="0 0 180 140" fill="none">
+      <circle cx="90" cy="70" r="38" stroke="#D4570A" stroke-width="1.2"/>
+      <path d="M90 32 C90 32 78 50 78 70 C78 90 90 108 90 108" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M90 32 C90 32 102 50 102 70 C102 90 90 108 90 108" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M52 70 C52 70 70 58 90 58 C110 58 128 70 128 70" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M52 70 C52 70 70 82 90 82 C110 82 128 70 128 70" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M30 10 Q50 30 40 60" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 60 Q30 45 20 50" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M40 60 Q45 42 55 40" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <circle cx="90" cy="70" r="4" fill="#D4570A" opacity="0.4"/>
+    </svg>
+
+    <div class="masthead-eyebrow">Still Making | Weekly 15</div>
+    <div class="masthead-title">The wave</div>
+    <div class="masthead-bottom">
+      <div class="masthead-meta">
+        Week of <span>July 27</span><br>
+        Mood · <span>Tired</span><br>
+        Phase · <span>full moon and Ovulatory - both giving me restless energy that needed to go somewhere</span>
+      </div>
+      <div class="masthead-tamil">வார இதழ்</div>
+    </div>
+    <div class="masthead-bar"></div>
+  </div>
+  <div class="torn-bottom"></div>
+
+  <!-- ══ OPENING — THE WAVE ════════════════════════ -->
+  <div class="opening">
+    <svg class="botanical-corner" style="bottom:12px;right:24px;width:120px;height:96px;" viewBox="0 0 120 96" fill="none">
+      <path d="M110 86 Q76 54 44 44 Q20 36 10 10" stroke="#1F5A58" stroke-width="1.2" fill="none"/>
+      <path d="M44 44 Q48 66 60 74" stroke="#1F5A58" stroke-width="1" fill="none"/>
+      <path d="M44 44 Q30 56 24 68" stroke="#1F5A58" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#1F5A58" opacity="0.5"/>
+    </svg>
+
+    <div class="opening-top"><span class="opening-watermark">அலை</span></div>
+
+    <div class="lede-italic">I grew up in a city by the sea.</div>
+
+    <div class="section-body">
+      <p>And the sea followed me everywhere I went. Where I lived - less than 500m from the actual beach. Close enough to taste the cool salty breeze every evening at 5pm.</p>
+      <p>Where I went to school - I would stare out the classroom windows at that narrow strip of blue blurring into the sky.</p>
+      <p>Every bus I took, everywhere I went. The sea was waiting. Like a patient old friend, waving a glimmering hello.</p>
+      <p>Growing up in this city, I felt like I knew the sea in my soul. But I didn't know the water in my body. Not fully.</p>
+      <p>In my conservative hometown, you didn't actually swim. You definitely didn't wear swimming costumes. You just lifted your skirts or rolled your pants up to the knee. And played hide and seek with the waves. Running back and forth to get just your feet, ankles and maybe shins wet.</p>
+      <p>The waves are too strong. The elders would warn us incessantly. Too strong to swim in unless you were one of the fisherfolk who lived nearby.</p>
+      <p>Didn't stop my father from throwing me into the waves on a full moon night, when he had suddenly remembered his fathering duties and brought us to the beach for a family evening out. Whatever lesson he hoped I'd learn was lost on me. All I remembered was spinning round and round in the waves. Not knowing up from down. Feeling like a lost sock in a particularly vicious washing machine.</p>
+      <p>I guess I did learn one lesson. The waves are definitely too strong. So I went back to knowing the sea with my eyes, my heart, and sometimes my running feet.</p>
+      <p>It would be another 20 odd years, far away in another sea, that I learned what you did with waves that were too strong.</p>
+      <p>You dove into them. Seems simple and a bit crazy. The first time I heard this I thought I was being pranked. But it didn't look that way because everyone else on this Mediterranean beach was doing it.</p>
+      <p>When it was my turn, I dove straight into the next wave and I was astonished. That wave was strong enough to knock me down and then some but when I dove in - it was just water. No resistance. All the fury and force were on the other side. The side I had been insisting on staying in because I was afraid. A logical fear - If the waves were so strong close to the shore wouldn't they be stronger the deeper I went? And maybe true depending on the beach you were in or even what the sea was like that day.</p>
+      <p>But most of the time, in most beaches, they were manageable waves. I had just been on the wrong side.</p>
+      <p>My relationship with my creative practice is a lot like this. Every time I return to writing, drawing, sewing - pretty much anything creative, my fear is palpable. Sitting heavy on my shoulders and breathing its sulphuric breath down my neck. I don't think this fear is going anywhere. Every time I think I've found ways to cope with it, it returns like another too strong wave.</p>
+      <p>But. And this is an important But. It's only scary if you're on the wrong side. Dive in. The water is lovely.</p>
+    </div>
+  </div>
+
+  <!-- ══ MAKING / MADE — intro ═════════════════════ -->
+  <div class="reads-intro">
+    <svg class="botanical-corner" style="bottom:14px;right:22px;width:120px;height:96px;opacity:0.14;" viewBox="0 0 120 96" fill="none">
+      <path d="M110 86 Q76 54 44 44 Q20 36 10 10" stroke="#1F5A58" stroke-width="1.2" fill="none"/>
+      <path d="M44 44 Q48 66 60 74" stroke="#1F5A58" stroke-width="1" fill="none"/>
+      <path d="M44 44 Q30 56 24 68" stroke="#1F5A58" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#1F5A58" opacity="0.6"/>
+    </svg>
+    <div class="section-title-row">
+      <div class="section-title">Making / Made</div>
+      <span class="section-watermark">படைப்பு</span>
+    </div>
+  </div>
+
+  <!-- Make 1 — video left, text right (mauve) -->
+  <div class="read read-mauve">
+    <div class="read-img">
+      <video src="vid-00.mp4" poster="img-00.jpg" autoplay muted loop playsinline></video>
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">01</div>
+      <div class="read-body">
+        <p>I've had a horrendous migraine and POTS flare for the last 3 weeks. So naturally I decided to paint one of the rooms in the flat the minute I felt 20% better. Is there a word for this? Maybe Revenge Hyperactivity? To make up for all the time I feel I have lost.</p>
+        <p>Anyway in a sign of slightly higher maturity, I decided to pace myself and go really slow. One wall at a time. So the room is coming together. And my shoulder isn't coming apart. Win win.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Make 2 — text left, images right (teal) -->
+  <div class="read read-teal flip">
+    <div class="read-img">
+      <div class="sketch-stack">
+        <img src="img-01.jpg" alt="Charcoal life-drawing study of a seated figure">
+        <img src="img-02.jpg" alt="Charcoal and sienna life-drawing study of a reclining figure">
+      </div>
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">02</div>
+      <div class="read-body">
+        <p>drew these at a live drawing session. Got to test some of what I've learned in my art classes. Also a reminder of how far there is to go</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ WHAT I'M READING — intro ══════════════════ -->
+  <div class="reads-intro intro-read">
+    <svg class="botanical-corner" style="bottom:14px;right:22px;width:120px;height:96px;opacity:0.12;" viewBox="0 0 120 96" fill="none">
+      <path d="M110 86 Q76 54 44 44 Q20 36 10 10" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M44 44 Q48 66 60 74" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <path d="M44 44 Q30 56 24 68" stroke="#D4570A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#D4570A" opacity="0.5"/>
+    </svg>
+    <div class="section-title-row">
+      <div class="section-title">What I'm reading</div>
+      <span class="section-watermark">படிக்கிறேன்</span>
+    </div>
+  </div>
+
+  <!-- Read 1 — image left, text right (burgundy) -->
+  <div class="read read-burgundy">
+    <div class="read-img">
+      <img src="img-03.jpg" alt="Cover of Wild Dark Shore by Charlotte McConaghy">
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">01</div>
+      <div class="read-body">
+        <p>Reading a mystery novel where a woman washes up on a remote island where only 4 other humans live - a father and 3 kids - caretakers of a doomsday seed vault. Who is she? What is she hiding? What are they hiding?</p>
+        <p>It's really well written and sharply observed. The character work is really strong and the setting really comes alive in the writing. Can't wait to see how the mystery unfolds.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CLOSING ════════════════════════════════════ -->
+  <div class="closing">
+    <div class="closing-label">This week / Next week</div>
+    <div class="section-title-row">
+      <div class="closing-title">This week / Next week</div>
+      <span class="closing-watermark">சுவர்</span>
+    </div>
+
+    <div class="closing-body">
+      <p>If my health holds up, resume art class. Get a Zone 2 run in. Start to figure out when and how I return to work</p>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-text">still making · week of july 27 2026</div>
+    <div class="footer-tamil">படைப்பு</div>
+  </div>
+
+</div>
+</body>
+</html>
