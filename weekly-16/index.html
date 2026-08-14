@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Making · Weekly 16 · The Wobble</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #F0EAE0;
+    --aged:     #DDD4C4;
+    --ink:      #221E18;
+    --night:    #1A1612;
+    --dust:     #907E72;
+    --rust:     #B0502A;
+    --ochre:    #C09030;
+    --sage:     #6A7D60;
+    --mauve:    #806070;
+    --orange:   #D4570A;
+    --burgundy: #7A1F2E;
+    --teal:     #1F5A58;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #2A1620;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 750px;
+    margin: 0 auto;
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  /* ── MASTHEAD ─────────────────────────────────── */
+  .masthead {
+    background: var(--night);
+    color: var(--paper);
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-bignum {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(150px, 42vw, 320px);
+    line-height: 1;
+    color: rgba(255,255,255,0.10);
+    position: absolute;
+    top: -40px;
+    right: -30px;
+    letter-spacing: -12px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dust);
+    margin-bottom: 28px;
+  }
+
+  .masthead-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 8.4vw, 60px);
+    line-height: 1.04;
+    color: var(--paper);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -1px;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  .masthead-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+    gap: 20px;
+  }
+
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(240,234,224,0.65);
+    line-height: 1.8;
+    max-width: 74%;
+  }
+
+  .masthead-meta span { color: rgba(240,234,224,0.9); }
+
+  .masthead-tamil {
+    font-size: 22px;
+    color: rgba(240,234,224,0.2);
+    letter-spacing: 0.05em;
+    font-family: serif;
+    white-space: nowrap;
+  }
+
+  .masthead-bar {
+    height: 3px;
+    background: var(--orange);
+    margin-top: 32px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .masthead-botanical {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* ── TORN PAPER EDGE ──────────────────────────── */
+  .torn-bottom {
+    height: 28px;
+    background: var(--night);
+    position: relative;
+    overflow: hidden;
+  }
+  .torn-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -2%; right: -2%;
+    height: 30px;
+    background: var(--paper);
+    clip-path: polygon(
+      0% 100%, 3% 30%, 6% 80%, 10% 20%, 14% 65%, 18% 10%,
+      22% 55%, 26% 15%, 30% 70%, 34% 25%, 38% 75%, 42% 20%,
+      46% 60%, 50% 5%, 54% 55%, 58% 20%, 62% 70%, 66% 30%,
+      70% 75%, 74% 15%, 78% 60%, 82% 25%, 86% 70%, 90% 20%,
+      94% 65%, 97% 35%, 100% 80%, 100% 100%
+    );
+  }
+
+  /* ── OPENING (cream) ──────────────────────────── */
+  .opening {
+    padding: 48px 48px 52px;
+    position: relative;
+  }
+  .opening-top {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+  .opening-watermark {
+    font-family: serif;
+    font-size: clamp(20px, 5vw, 34px);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    color: rgba(122,31,46,0.32);
+    user-select: none;
+    pointer-events: none;
+    text-align: right;
+    overflow-wrap: break-word;
+  }
+  .opening .section-body p { color: var(--ink); }
+
+  /* ── SECTIONS ─────────────────────────────────── */
+  .section {
+    padding: 48px 48px 52px;
+    position: relative;
+  }
+  .section.tint-ochre { background: #F5F0E4; }
+  .section.tint-teal  { background: #E7EEED; }
+
+  .section-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 22px;
+  }
+  .section-title-row .section-title,
+  .section-title-row .closing-title {
+    margin-bottom: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .section-watermark {
+    font-family: serif;
+    font-size: clamp(16px, 4.2vw, 28px);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.45;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding-bottom: 4px;
+    text-align: right;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .tint-ochre .section-label { color: #8A6417; }
+  .tint-teal  .section-label { color: var(--teal); }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(23px, 6.2vw, 34px);
+    line-height: 1.14;
+    letter-spacing: -0.4px;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  .accent-rule {
+    height: 3px;
+    width: 46px;
+    margin-bottom: 22px;
+    border-radius: 2px;
+  }
+  .tint-ochre .accent-rule { background: #B48A1E; }
+  .tint-teal  .accent-rule { background: var(--teal); }
+
+  .section-body p {
+    font-size: 16px;
+    line-height: 1.82;
+    margin-bottom: 18px;
+  }
+  .section-body p:last-child { margin-bottom: 0; }
+  .section-body em { font-style: italic; }
+
+  /* ── WHAT I'M MAKING / READING — bold staggered split panels ── */
+  .reads-intro {
+    background: var(--night);
+    padding: 52px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .reads-intro .section-label { color: var(--ochre); opacity: 1; }
+  .reads-intro.intro-read .section-label { color: var(--rust); opacity: 1; }
+  .reads-intro .section-title { color: var(--paper); }
+  .reads-intro .section-watermark { color: rgba(192,144,48,0.5); }
+  .reads-intro.intro-read .section-watermark { color: rgba(176,80,42,0.55); }
+
+  .read {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  .read-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(18px, 4.5vw, 40px) clamp(12px, 4vw, 32px);
+    overflow: hidden;
+  }
+  .read-img img {
+    width: 100%;
+    height: auto;
+    max-height: 460px;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+  }
+  .read-img video {
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+    border-radius: 2px;
+  }
+  .read-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 5.5vw, 44px) clamp(14px, 5vw, 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  .read-bignum {
+    position: absolute;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 12rem;
+    line-height: 1;
+    top: -30px;
+    right: -8px;
+    opacity: 0.10;
+    color: #fff;
+    pointer-events: none;
+    user-select: none;
+  }
+  .read-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(18px, 3.8vw, 30px);
+    line-height: 1.12;
+    letter-spacing: -0.4px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+    overflow-wrap: break-word;
+  }
+  .read-body {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: clamp(11.5px, 2.1vw, 15px);
+    line-height: 1.62;
+    position: relative;
+    z-index: 1;
+  }
+  .read-body p { margin-bottom: 12px; }
+  .read-body p:last-child { margin-bottom: 0; }
+  .read-body strong { font-weight: 800; }
+
+  /* Card colour themes */
+  .read-burgundy .read-text  { background: var(--burgundy); }
+  .read-burgundy .read-img   { background: #4A0F1C; }
+  .read-burgundy .read-title { color: #F4EFE6; }
+  .read-burgundy .read-body  { color: rgba(244,239,230,0.92); }
+
+  .read-teal .read-text      { background: var(--teal); }
+  .read-teal .read-img       { background: #0C2E2C; }
+  .read-teal .read-title     { color: #F4EFE6; }
+  .read-teal .read-body      { color: rgba(244,239,230,0.92); }
+
+  .read-rust .read-text      { background: var(--rust); }
+  .read-rust .read-img       { background: #5E2413; }
+  .read-rust .read-title     { color: #F4EFE6; }
+  .read-rust .read-body      { color: rgba(244,239,230,0.94); }
+
+  .read-mauve .read-text     { background: #5A4250; }
+  .read-mauve .read-img      { background: #3B2B34; }
+  .read-mauve .read-title    { color: #F4EFE6; }
+  .read-mauve .read-body     { color: rgba(244,239,230,0.92); }
+
+  /* Stagger: flipped reads put image on the right */
+  .read.flip .read-img  { order: 2; }
+  .read.flip .read-text { order: 1; }
+
+  /* Full-width panel (book passage) */
+  .read-full {
+    background: #5E2413;
+    padding: clamp(26px, 5.5vw, 52px) clamp(18px, 5vw, 48px);
+    display: flex;
+    justify-content: center;
+  }
+  .read-full img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 14px 38px rgba(0,0,0,0.5);
+  }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  .footer {
+    background: var(--night);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(240,234,224,0.3);
+    letter-spacing: 0.1em;
+  }
+  .footer-tamil { font-size: 16px; color: rgba(240,234,224,0.15); font-family: serif; }
+
+  .botanical-corner { position: absolute; opacity: 0.1; pointer-events: none; user-select: none; }
+
+  @media (max-width: 600px) {
+    .masthead { padding: 40px 24px 36px; }
+    .masthead-bignum { top: -18px; right: -12px; letter-spacing: -8px; }
+    .masthead-bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .masthead-meta { max-width: 100%; }
+    .opening { padding: 36px 24px 40px; }
+    .section { padding: 36px 24px 40px; }
+    .section-title-row { align-items: baseline; }
+    .reads-intro { padding: 40px 24px 32px; }
+    .read-img { padding: 18px 12px; }
+    .read-text { padding: 22px 14px; }
+    .read-bignum { font-size: 6rem; top: -14px; right: -4px; }
+    .footer { padding: 20px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ MASTHEAD ══════════════════════════════════ -->
+  <div class="masthead">
+    <div class="masthead-bignum">16</div>
+
+    <svg class="masthead-botanical" width="180" height="140" viewBox="0 0 180 140" fill="none">
+      <circle cx="90" cy="70" r="38" stroke="#D4570A" stroke-width="1.2"/>
+      <circle cx="104" cy="70" r="38" stroke="#D4570A" stroke-width="1.2" opacity="0.6"/>
+      <path d="M30 12 Q52 32 42 62" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M42 62 Q30 46 20 52" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <path d="M42 62 Q47 43 57 41" stroke="#D4570A" stroke-width="1.2" fill="none"/>
+      <circle cx="90" cy="70" r="4" fill="#D4570A" opacity="0.4"/>
+    </svg>
+
+    <div class="masthead-eyebrow">Still Making | Weekly 16</div>
+    <div class="masthead-title">The Wobble</div>
+    <div class="masthead-bottom">
+      <div class="masthead-meta">
+        Week of <span>August 10</span><br>
+        Mood · <span>wild swings between despondent and optimistic</span><br>
+        Phase · <span>Luteal (hence the mood), New moon</span>
+      </div>
+      <div class="masthead-tamil">வார இதழ்</div>
+    </div>
+    <div class="masthead-bar"></div>
+  </div>
+  <div class="torn-bottom"></div>
+
+  <!-- ══ OPENING — THE ECLIPSE ═════════════════════ -->
+  <div class="opening">
+    <svg class="botanical-corner" style="bottom:12px;right:24px;width:120px;height:96px;" viewBox="0 0 120 96" fill="none">
+      <circle cx="66" cy="48" r="26" stroke="#7A1F2E" stroke-width="1.2"/>
+      <circle cx="78" cy="44" r="26" stroke="#7A1F2E" stroke-width="1.2" opacity="0.6"/>
+      <circle cx="66" cy="48" r="3" fill="#7A1F2E" opacity="0.5"/>
+    </svg>
+
+    <div class="opening-top"><span class="opening-watermark">கிரகணம்</span></div>
+
+    <div class="section-body">
+      <p>It's a near-total eclipse today- one of those once in a century things that seem to happen every 5 years. Or is that just how it seems to us millennials who have seen more than our fair share of once in a century events in the four decades we have been on this planet?</p>
+      <p>In theme with the eclipse vibes - darkness/light, yin/yang - here are a few snippets from various recent writing about pain, illness and staying sane in the face of it.</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 — ART IS PAIN? ══════════════════ -->
+  <div class="section tint-ochre">
+    <div class="section-title-row">
+      <div class="section-title">Art Is Pain?</div>
+      <span class="section-watermark">வலியும் ஒளியும்</span>
+    </div>
+    <div class="accent-rule"></div>
+    <div class="section-body">
+      <p>When I was younger I used to think that you had to struggle and be unhappy to create art. Art comes from pain, I thought. All the songs about heartbreak are proof right?</p>
+      <p>In a way I ran away from a creative life, because I didn't want to doom myself to relying on a life of suffering and unhappiness.</p>
+      <p>But now I know, art is what we make despite pain. Not what we make because of it.</p>
+      <p>How do I know this? I started singing around the house at some point last year, a few weeks after I had started a new migraine treatment. And until I did it, the silly singing, I hadn't realized that I had ever stopped doing it.</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 — BUMPS AND KNOCKS ══════════════ -->
+  <div class="section tint-teal">
+    <div class="section-title-row">
+      <div class="section-title">Bumps and Knocks</div>
+      <span class="section-watermark">முட்டி மோதி</span>
+    </div>
+    <div class="accent-rule"></div>
+    <div class="section-body">
+      <p>I feel like I've lost my handle on July and August. It has wriggled out of my grasp like an over eager hose pipe - the force of the water getting water everywhere but where I intended.</p>
+      <p>I've had a long flare up this past month. And I'm trying to stay calm about it - sticking with my current care plan and not frantically trying 10 new remedies. The resentment though is harder to contain. This thing steals my time, my plans, the pleasure I take in things and worst of all my sense of who I am. Some rage and resentment seems warranted.</p>
+      <p>That's what happens with chronic illness. The days are long and exhausting. And yet months and years slip by. A waking Rip Van Winkle situation- a blink and you realize time has passed you by. Your body and your world unrecognizable.</p>
+      <p>The pain makes you live in the short term - a strange type of mindfulness I suppose. And while acceptance of that pain can happen in the now, recovery happens over weeks, months and years. Setbacks are guaranteed.</p>
+      <p>But if I zoom out far enough, I'm making progress - bumping and knocking my way through the flotsam and jetsam of a lazy, temperamental river. I'll hold on to that thought for today.</p>
+    </div>
+  </div>
+
+  <!-- ══ MAKING / MADE — intro ═════════════════════ -->
+  <div class="reads-intro">
+    <svg class="botanical-corner" style="bottom:14px;right:22px;width:120px;height:96px;opacity:0.14;" viewBox="0 0 120 96" fill="none">
+      <path d="M110 86 Q76 54 44 44 Q20 36 10 10" stroke="#C09030" stroke-width="1.2" fill="none"/>
+      <path d="M44 44 Q48 66 60 74" stroke="#C09030" stroke-width="1" fill="none"/>
+      <path d="M44 44 Q30 56 24 68" stroke="#C09030" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#C09030" opacity="0.6"/>
+    </svg>
+    <div class="section-title-row">
+      <div class="section-title">Making / Made</div>
+      <span class="section-watermark">படைப்பு</span>
+    </div>
+  </div>
+
+  <!-- Make 1 — image left, text right (burgundy) -->
+  <div class="read read-burgundy">
+    <div class="read-img">
+      <img src="img-00.jpg" alt="A strip of pencil shading practice, graduating from light to dark in numbered squares">
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">01</div>
+      <div class="read-body">
+        <p>I spent 2 hours in an art class just practicing holding the pencil differently and learning to shade. Pretty cool how much learning different crafts is about training the body as much as much as the mind.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Make 2 — text left, video right (teal) -->
+  <div class="read read-teal flip">
+    <div class="read-img">
+      <video src="vid-00.mp4" poster="vid-00-poster.jpg" autoplay muted loop playsinline></video>
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">02</div>
+      <div class="read-body">
+        <p>Made a pinhole camera for the eclipse - it's obviously not as clear as having the glasses but a pretty cool experience.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ WHAT I'M READING — intro ══════════════════ -->
+  <div class="reads-intro intro-read">
+    <svg class="botanical-corner" style="bottom:14px;right:22px;width:120px;height:96px;opacity:0.12;" viewBox="0 0 120 96" fill="none">
+      <path d="M110 86 Q76 54 44 44 Q20 36 10 10" stroke="#B0502A" stroke-width="1.2" fill="none"/>
+      <path d="M44 44 Q48 66 60 74" stroke="#B0502A" stroke-width="1" fill="none"/>
+      <path d="M44 44 Q30 56 24 68" stroke="#B0502A" stroke-width="1" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="#B0502A" opacity="0.5"/>
+    </svg>
+    <div class="section-title-row">
+      <div class="section-title">What I'm reading</div>
+      <span class="section-watermark">படிக்கிறேன்</span>
+    </div>
+  </div>
+
+  <!-- Read 1 — Heart Lamp — image left, text right (rust) -->
+  <div class="read read-rust">
+    <div class="read-img">
+      <img src="img-01.jpg" alt="Heart Lamp, selected stories by Banu Mushtaq, resting on beige linen">
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">01</div>
+      <div class="read-title">Band mushtaq - Heart Lamp</div>
+      <div class="read-body">
+        <p>Have only just read the first story and it was incredible but such a gut punch. You know you're reading really good short stories when you can't believe it's over because it was so vivid and immersive - like the whiplash of a sudden summer storm. The translation is fantastic - bringing in the colloquialisms and specific voice of these Muslim South Indian characters perfectly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Passage — full-width centered panel (same rust family) -->
+  <div class="read-full">
+    <img src="img-02.jpg" alt="A passage from Heart Lamp on page 7, on the many words for husband">
+  </div>
+
+  <!-- Read 2 — This poem — text left, image right (mauve) -->
+  <div class="read read-mauve flip">
+    <div class="read-img">
+      <img src="img-03.jpg" alt="Late Fragment by Raymond Carver, printed on a page">
+    </div>
+    <div class="read-text">
+      <div class="read-bignum">02</div>
+      <div class="read-body">
+        <p>Love this poem by Raymond Carver</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-text">still making · week of august 10 2026</div>
+    <div class="footer-tamil">படைப்பு</div>
+  </div>
+
+</div>
+</body>
+</html>
