@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Storm season · Still Making · Weekly 17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=DM+Mono:wght@300;400&family=Syne:wght@700;800&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F0EAE0; --aged:#DDD4C4; --ink:#221E18; --night:#1A1612; --dust:#907E72;
+  --rust:#B0502A; --ochre:#C09030; --sage:#6A7D60; --mauve:#806070; --orange:#D4570A;
+  --burgundy:#7A1F2E; --teal:#1F5A58;
+  --rust-tint:#F5EDE7; --ochre-tint:#F5F0E4; --sage-tint:#E9EEE7; --mauve-tint:#EEE8ED; --teal-tint:#E4ECEB;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --display:'Syne','Arial Black','Helvetica Neue',Arial,sans-serif;
+  --mono:'DM Mono','SFMono-Regular',Menlo,Consolas,monospace;
+  --tamil:'Noto Sans Tamil','Tamil Sangam MN','Latha',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--night)}
+body{background:var(--night);color:var(--ink);font-family:var(--serif);font-weight:300;-webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+.page{max-width:760px;margin:0 auto;background:var(--paper);overflow:hidden}
+img{max-width:100%;display:block}
+
+/* ── MASTHEAD ───────────────────────── */
+.masthead{position:relative;background:var(--night);color:var(--paper);
+  padding:calc(56px + env(safe-area-inset-top,0px)) clamp(24px,7vw,56px) 44px;overflow:hidden}
+.masthead-bignum{position:absolute;right:-0.06em;top:-0.18em;font-family:var(--display);font-weight:800;
+  font-size:clamp(220px,58vw,420px);line-height:1;color:var(--paper);opacity:.06;letter-spacing:-.04em;pointer-events:none}
+.masthead-rain{position:absolute;inset:0;pointer-events:none}
+.masthead-eyebrow{position:relative;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dust);margin-bottom:28px}
+.masthead-title{position:relative;font-family:var(--display);font-weight:800;font-size:clamp(64px,17vw,124px);
+  line-height:.86;letter-spacing:-.03em;color:var(--paper)}
+.masthead-title .italic-line{display:block;font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:.62em;letter-spacing:-.01em;color:var(--orange);margin-top:.18em;padding-left:.9em}
+.masthead-bottom{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-top:44px}
+.masthead-meta{font-family:var(--mono);font-size:12px;line-height:2;color:var(--dust)}
+.masthead-meta span{color:var(--paper)}
+.masthead-tamil{font-family:var(--tamil);font-weight:700;font-size:clamp(18px,4.4vw,26px);color:var(--orange);opacity:.85}
+.masthead-bar{position:relative;height:4px;background:var(--orange);margin-top:30px;width:72px}
+.torn-bottom{height:22px;background:var(--night);
+  clip-path:polygon(0 0,100% 0,100% 40%,96% 70%,92% 45%,88% 80%,83% 50%,79% 72%,74% 38%,70% 66%,65% 44%,61% 82%,56% 52%,52% 70%,47% 40%,43% 76%,38% 50%,34% 68%,29% 42%,25% 78%,20% 48%,16% 70%,11% 40%,7% 74%,3% 50%,0 66%);
+  margin-bottom:-1px;position:relative;z-index:2;background-color:var(--night)}
+.torn-wrap{background:var(--teal-tint)}
+
+/* ── SECTIONS ───────────────────────── */
+.section{position:relative;padding:56px clamp(24px,7vw,56px)}
+.section-inner{position:relative;z-index:1}
+.section-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;margin-bottom:22px}
+.section-label{width:100%;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--dust);margin-bottom:10px}
+.section-title{font-family:var(--display);font-weight:800;font-size:clamp(34px,8.4vw,54px);line-height:.98;letter-spacing:-.02em;color:var(--accent)}
+.section-watermark{font-family:var(--tamil);font-weight:700;font-size:clamp(22px,6vw,40px);color:var(--accent);opacity:.45;line-height:1.2;white-space:nowrap;margin-left:auto}
+.section-body p{font-size:clamp(17px,2.3vw,19px);line-height:1.68;margin-bottom:1.05em;max-width:34em}
+.section-body p:last-child{margin-bottom:0}
+.accent-teal{--accent:var(--teal);background:var(--teal-tint)}
+.accent-burgundy{--accent:var(--burgundy);background:var(--paper);padding-bottom:0}
+.accent-ochre{--accent:#8E6A1E;background:var(--ochre-tint)}
+.accent-mauve{--accent:var(--mauve);background:var(--mauve-tint)}
+
+.call{font-family:var(--serif);font-style:italic;font-size:clamp(26px,6vw,38px)!important;line-height:1.2!important;color:var(--teal);letter-spacing:-.01em}
+
+
+.botanical{position:absolute;pointer-events:none;z-index:0}
+
+/* ── GALLERY ───────────────────────── */
+.gallery{position:relative;margin:34px calc(-1 * clamp(24px,7vw,56px)) 0}
+.gallery-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;outline:none}
+.gallery-track::-webkit-scrollbar{display:none}
+.gallery-track:focus-visible{box-shadow:inset 0 0 0 3px var(--orange)}
+.slide{flex:0 0 100%;scroll-snap-align:center;background:#f8f4ee;height:clamp(380px,78vw,620px);display:flex;align-items:center;justify-content:center;padding:18px}
+.slide img{width:100%;height:100%;object-fit:contain}
+.gallery-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(24px,7vw,56px) 0}
+.dots{display:flex;gap:7px;flex-wrap:wrap}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--burgundy);background:transparent;cursor:pointer;padding:0;transition:background .2s}
+.dot[aria-current="true"]{background:var(--burgundy)}
+.gallery-count{font-family:var(--mono);font-size:12px;color:var(--dust);min-width:48px}
+.arrows{display:flex;gap:8px}
+.arrow{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--burgundy);background:transparent;color:var(--burgundy);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--mono)}
+.arrow:hover{background:var(--burgundy);color:var(--paper)}
+.arrow:focus-visible,.dot:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.arrow:disabled{opacity:.3;cursor:default;background:transparent;color:var(--burgundy)}
+
+/* split card: sashiko */
+.split{display:grid;grid-template-columns:1fr 1fr;margin:44px calc(-1 * clamp(24px,7vw,56px)) 0;background:var(--rust-tint)}
+.split-media{background:#111;display:flex;align-items:center;justify-content:center}
+.split-media img{width:100%;height:auto;object-fit:contain}
+.split-text{padding:34px clamp(22px,5vw,40px);display:flex;align-items:center}
+.split-text p{font-size:clamp(16px,2.2vw,18px);line-height:1.66;margin:0}
+@media (max-width:560px){.split{grid-template-columns:1fr}}
+
+/* reading */
+.reading p{font-size:clamp(19px,3vw,23px)!important;line-height:1.55!important}
+
+/* closing */
+.closing p{font-family:var(--display);font-weight:800;font-size:clamp(24px,5.6vw,36px)!important;line-height:1.12!important;letter-spacing:-.01em;color:var(--ink);max-width:16em;border-left:5px solid var(--mauve);padding-left:20px}
+
+.footer{background:var(--night);color:var(--dust);padding:40px clamp(24px,7vw,56px) calc(40px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.1em}
+.footer a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--orange);padding-bottom:2px}
+.footer .tamil{font-family:var(--tamil);color:var(--orange);font-size:16px;letter-spacing:0}
+
+@media (prefers-reduced-motion:reduce){.gallery-track{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-bignum">17</div>
+    <svg class="masthead-rain" viewBox="0 0 760 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g stroke="#D4570A" stroke-width="1.4" stroke-linecap="round" opacity=".16">
+        <line x1="80" y1="40" x2="62" y2="92"/><line x1="160" y1="110" x2="142" y2="162"/><line x1="250" y1="20" x2="232" y2="72"/>
+        <line x1="340" y1="140" x2="322" y2="192"/><line x1="430" y1="60" x2="412" y2="112"/><line x1="520" y1="170" x2="502" y2="222"/>
+        <line x1="610" y1="30" x2="592" y2="82"/><line x1="690" y1="130" x2="672" y2="182"/><line x1="120" y1="250" x2="102" y2="302"/>
+        <line x1="580" y1="290" x2="562" y2="342"/><line x1="470" y1="380" x2="452" y2="432"/><line x1="40" y1="400" x2="22" y2="452"/>
+      </g>
+      <g fill="none" stroke="#D4570A" stroke-width="1.3" stroke-linecap="round" opacity=".15" transform="translate(600 300)">
+        <path d="M40 210 C 38 150, 50 100, 44 30"/>
+        <path d="M44 120 C 70 110, 88 92, 96 70"/>
+        <path d="M43 160 C 18 150, 4 134, -2 112"/>
+        <circle cx="44" cy="22" r="11"/>
+        <path d="M44 11 q -8 -16 0 -26 q 8 10 0 26"/><path d="M55 22 q 16 -8 26 0 q -10 8 -26 0"/>
+        <path d="M33 22 q -16 -8 -26 0 q 10 8 26 0"/><path d="M44 33 q -8 16 0 26"/>
+        <path d="M-60 -120 q 10 -8 20 0 q 6 -10 16 -4 M -40 -120 l -2 8"/>
+      </g>
+    </svg>
+    <div class="masthead-eyebrow">the wall · weekly check-in · still making</div>
+    <div class="masthead-title">
+      Storm
+      <span class="italic-line">season</span>
+    </div>
+    <div class="masthead-bottom">
+      <div class="masthead-meta">
+        Week of <span>October 5</span><br>
+        Mood · <span>hopeful</span><br>
+        Phase · <span>luteal. Waning crescent.</span>
+      </div>
+      <div class="masthead-tamil">வார இதழ்</div>
+    </div>
+    <div class="masthead-bar"></div>
+  </div>
+  <div class="torn-wrap"><div class="torn-bottom"></div></div>
+
+  <!-- OPENING -->
+  <div class="section accent-teal">
+    <svg class="botanical" style="right:-10px;bottom:-6px;width:150px;height:200px" viewBox="0 0 150 200" aria-hidden="true">
+      <g fill="none" stroke="#D4570A" stroke-width="1.4" stroke-linecap="round" opacity=".14">
+        <path d="M100 200 C 96 150, 108 110, 98 60"/><path d="M100 140 C 76 130, 60 112, 56 92"/><path d="M101 110 C 124 102, 136 88, 140 70"/>
+        <circle cx="98" cy="50" r="10"/><path d="M98 40 q -7 -14 0 -22 q 7 8 0 22"/><path d="M108 50 q 14 -7 22 0 q -8 7 -22 0"/><path d="M88 50 q -14 -7 -22 0 q 8 7 22 0"/>
+      </g>
+    </svg>
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-watermark">புயல் காலம்</div>
+      </div>
+      <div class="section-body">
+        <p class="call">Hello? Can you hear me?</p>
+        <p>You can? Good. I’m finding it hard to hear myself at the moment. But as long as you can hear me, I’ll keep trying to talk.</p>
+        <p>I’ve been away for a while. I was traveling which explains some of the break in schedule. But I’ve also been struggling with the never-ending flare and returning to any kind of schedule.</p>
+        <p>Anything I decide to do in a day is almost definitely not what I end up doing on that day. It’s like a category 5 superstorm of ADHD chaos.</p>
+        <p>But here I am. Trying to wear a metaphorical poncho and get on with things.</p>
+        <p>So in the interest of not making this too complicated I’ll keep this week short.</p>
+        <p>Here are some pictures of the creative practice that I have managed to keep up with. Some sashiko on the hard days and drawing on the better days.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAKING / MADE -->
+  <div class="section accent-burgundy">
+    <svg class="botanical" style="left:-8px;top:10px;width:120px;height:150px" viewBox="0 0 120 150" aria-hidden="true">
+      <g fill="none" stroke="#D4570A" stroke-width="1.3" stroke-linecap="round" opacity=".13">
+        <path d="M20 150 C 24 110, 14 80, 26 40"/><path d="M22 100 C 44 94, 58 80, 62 62"/><circle cx="27" cy="30" r="9"/>
+        <path d="M27 21 q -6 -12 0 -19 q 6 7 0 19"/><path d="M36 30 q 12 -6 19 0 q -7 6 -19 0"/>
+        <path d="M70 30 q 8 -6 16 0 q 5 -8 13 -3 M 86 30 l -2 6"/>
+      </g>
+    </svg>
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-title">Making / Made</div>
+        <div class="section-watermark">படைப்பு</div>
+      </div>
+      <div class="section-body">
+        <p>After a live drawing session where I really struggled with proportions, I’ve been learning more about observation vs construction methods of drawing. With construction you build lots of heuristics or approximations of proportions. A human body is typically measured as 7.5 times the height of the head. Halfway through the drawing is the midline of the pelvis. Different instructors seem to have different approximations they like to use so it’s a matter of seeing what works for me. The construction method also relies on some basic understanding of human anatomy – knowing where and how certain major bones and muscles sit in the body. This has been particularly cool for me as I’m already learning a lot about anatomy to manage my HEDS and build more stability and strength. So worlds colliding.</p>
+      </div>
+
+      <div class="gallery" aria-roledescription="carousel" aria-label="Drawings">
+        <div class="gallery-track" tabindex="0">
+          <div class="slide" role="group" aria-label="1 of 7"><img src="img-00.jpg" alt="Figure drawings and construction studies spread across a table" loading="lazy"></div>
+          <div class="slide" role="group" aria-label="2 of 7"><img src="img-01.jpg" alt="Timed pose on an iPad with a pencil sketch of the pose on the desk" loading="lazy"></div>
+          <div class="slide" role="group" aria-label="3 of 7"><img src="img-02.jpg" alt="Construction drawing of the back of a figure with anatomy notes" loading="lazy"></div>
+          <div class="slide" role="group" aria-label="4 of 7"><img src="img-03.jpg" alt="Construction sketch of a standing figure clipped to an easel" loading="lazy"></div>
+          <div class="slide" role="group" aria-label="5 of 7"><img src="img-04.jpg" alt="Pencil sketch of a seated figure" loading="lazy"></div>
+          <div class="slide" role="group" aria-label="6 of 7"><img src="img-05.jpg" alt="Pencil drawing of a figure on the floor with one leg extended" loading="lazy"></div>
+          <div class="slide" role="group" aria-label="7 of 7"><img src="img-06.jpg" alt="Charcoal drawing of a standing figure with arms raised" loading="lazy"></div>
+        </div>
+        <div class="gallery-bar">
+          <div class="gallery-count"><span class="cur">1</span> / 7</div>
+          <div class="dots"></div>
+          <div class="arrows">
+            <button class="arrow prev" aria-label="Previous drawing">‹</button>
+            <button class="arrow next" aria-label="Next drawing">›</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="split-media">
+          <img src="img-07.jpg" alt="Red jacket back with white sashiko patterns stitched in blocks" loading="lazy">
+        </div>
+        <div class="split-text">
+          <p>I’m slowly adding patterns to this jacket. For me the back of the pattern looks as interesting as the front and making the back as neat as possible feels important for me for some reason.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- READING -->
+  <div class="section accent-ochre">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-title">What I’m reading</div>
+        <div class="section-watermark">வாசிப்பு</div>
+      </div>
+      <div class="section-body reading">
+        <p>Reading a Norse fantasy called The Shadow of the Gods. I’m 400 pages in and only just started to remember which character is who. The plot is picking up now and I’m excited to see how this goes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="section accent-mauve">
+    <svg class="botanical" style="right:6px;top:10px;width:110px;height:140px" viewBox="0 0 110 140" aria-hidden="true">
+      <g fill="none" stroke="#D4570A" stroke-width="1.3" stroke-linecap="round" opacity=".14">
+        <path d="M70 140 C 66 100, 78 70, 70 34"/><path d="M71 92 C 48 86, 36 70, 34 54"/><circle cx="70" cy="26" r="9"/>
+        <path d="M70 17 q -6 -12 0 -18 q 6 6 0 18"/><path d="M61 26 q -12 -6 -19 0 q 7 6 19 0"/><path d="M79 26 q 12 -6 19 0 q -7 6 -19 0"/>
+      </g>
+    </svg>
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-title">This week / Next week</div>
+      </div>
+      <div class="section-body closing">
+        <p>The plan for next week is to keep showing up here as I ease back into work.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>still making · weekly 17</span>
+    <span class="tamil">சுவர்</span>
+    <a href="../">all editions</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  const g=document.querySelector('.gallery'); if(!g) return;
+  const track=g.querySelector('.gallery-track'), slides=[...track.children];
+  const dotsWrap=g.querySelector('.dots'), cur=g.querySelector('.cur');
+  const prev=g.querySelector('.prev'), next=g.querySelector('.next');
+  const dots=slides.map((s,i)=>{const b=document.createElement('button');b.className='dot';b.setAttribute('aria-label','Drawing '+(i+1));b.onclick=()=>go(i);dotsWrap.appendChild(b);return b;});
+  let idx=0;
+  function go(i){i=Math.max(0,Math.min(slides.length-1,i));track.scrollTo({left:slides[i].offsetLeft-track.offsetLeft,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+  function update(){idx=Math.round(track.scrollLeft/track.clientWidth);cur.textContent=idx+1;dots.forEach((d,i)=>d.setAttribute('aria-current',i===idx));prev.disabled=idx===0;next.disabled=idx===slides.length-1;}
+  prev.onclick=()=>go(idx-1); next.onclick=()=>go(idx+1);
+  track.addEventListener('scroll',()=>{clearTimeout(track._t);track._t=setTimeout(update,60);},{passive:true});
+  track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(idx+1);}if(e.key==='ArrowLeft'){e.preventDefault();go(idx-1);}});
+  update();
+})();
+</script>
+</body>
+</html>
